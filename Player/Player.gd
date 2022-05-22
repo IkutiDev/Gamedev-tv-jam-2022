@@ -6,8 +6,8 @@ export var MaxSpeed = 120.0
 
 var velocity = Vector2.ZERO
 
-onready var screenWidth = ProjectSettings.get("display/window/size/width")
-onready var collisionRadius = $CollisionShape2D.shape.radius  * 2
+onready var screenHeight = ProjectSettings.get("display/window/size/height")
+onready var collisionHeight = $CollisionShape2D.shape.height  * 2
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
@@ -26,7 +26,7 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity)
 	
-	if position.x <= 0 + collisionRadius:
-		position.x = 0 + collisionRadius
-	if position.x >= screenWidth - collisionRadius:
-		position.x = screenWidth - collisionRadius
+	if position.y <= 0 + collisionHeight:
+		position.y = 0 + collisionHeight
+	if position.y >= screenHeight - collisionHeight:
+		position.y = screenHeight - collisionHeight
