@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Brunhilda_an_face.png-7e50f4d458db58077a56847352eced66.stex"
+path="res://.import/Brunhilda_an_face.png-11c6b28ef1edfc551637c161a9966312.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Brunhilda_an_face.png"
-dest_files=[ "res://.import/Brunhilda_an_face.png-7e50f4d458db58077a56847352eced66.stex" ]
+source_file="res://Player/Brunhilda_an_face.png"
+dest_files=[ "res://.import/Brunhilda_an_face.png-11c6b28ef1edfc551637c161a9966312.stex" ]
 
 [params]
 

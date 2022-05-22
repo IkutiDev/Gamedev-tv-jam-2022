@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Brunhilda_an_face.png" type="Texture" id=1]
+[ext_resource path="res://Player/Brunhilda_an_face.png" type="Texture" id=1]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 24.0
