@@ -13,6 +13,8 @@ var currentTimer : Timer
 
 export var health = 100
 
+var quitting = false
+
 func Init():
 	var players = get_tree().get_nodes_in_group("player")
 	playerNode = players[0]
@@ -46,16 +48,25 @@ func TakeDamage(damage):
 
 
 
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		quitting = true
+
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	if quitting:
+		return
+	StartTimerToDestroyWhenNotVisibile(5.0)
+	
+func StartTimerToDestroyWhenNotVisibile(time):
 	currentTimer = Timer.new()
 	currentTimer.connect("timeout",self,"DestroyWhenNotVisible") 
 #timeout is what says in docs, in signals
 #self is who respond to the callback
 #_on_timer_timeout is the callback, can have any name
 	add_child(currentTimer) #to process
-	currentTimer.start(5.0) #to start
-	
+	currentTimer.start(time) #to start
+
 func DestroyWhenNotVisible():
 	queue_free()
 
