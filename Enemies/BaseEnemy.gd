@@ -30,9 +30,6 @@ func _process(delta):
 		$Sprite.flip_h = false
 	if direction_vector.x < 0:
 		$Sprite.flip_h = true
-	
-	if knockback_state:
-		direction_vector = -direction_vector
 
 
 	if direction_vector != Vector2.ZERO:
@@ -68,10 +65,4 @@ func _on_HitboxArea_death():
 
 
 func _on_HitboxArea_take_damage():
-	knockback_state = true
-	$KnockbackTimer.start(0.5)
 	$AnimationPlayer.play("Flash")
-
-
-func _on_KnockbackTimer_timeout():
-	knockback_state = false

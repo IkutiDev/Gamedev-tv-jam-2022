@@ -5,7 +5,7 @@ class_name Health
 signal death
 signal take_damage
 
-export var health = 100
+export var health = 100.0
 
 func TakeDamage(damage):
 	health -= damage

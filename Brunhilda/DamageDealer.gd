@@ -3,26 +3,29 @@ extends Node2D
 #Enemies
 
 var garlicEnemies : Array
-var garlicTimer = 0.1
+var garlicTimer = 0.5
 var garlicDamage = 10
 
 var currentGarlicTimer = 0.0
 
-var entityToTakeDamage : Health
+var entityHealth : Health
 
 func _process(delta):
+	if garlicEnemies.size() == 0:
+		return
 	currentGarlicTimer += delta
 	if currentGarlicTimer > garlicTimer:
-		_dealGarlicDamage()
+		currentGarlicTimer = 0.0
+		for i in garlicEnemies.size():
+			_dealGarlicDamage(garlicEnemies[i])
 
-func _dealGarlicDamage():
-	currentGarlicTimer = 0.0
-	for i in garlicEnemies.size():
-		entityToTakeDamage = garlicEnemies[i]
-		entityToTakeDamage.TakeDamage(garlicDamage)
+func _dealGarlicDamage(entity):
+	entityHealth = entity
+	entityHealth.TakeDamage(garlicDamage)
 
 func _on_Garlic_area_entered(area):
 	if area is Health:
+		_dealGarlicDamage(area)
 		garlicEnemies.append(area)
 	
 func _on_Garlic_area_exited(area):
