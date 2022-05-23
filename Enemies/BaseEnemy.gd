@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name BaseEnemy
+
 var playerNode : Node2D
 var playerPosition : Vector2
 
@@ -9,11 +11,7 @@ export var enemySpeed = 120.0
 
 var velocity = Vector2.ZERO
 
-var currentTimer : Timer
-
-export var health = 100
-
-var quitting = false
+var knockback_state = false
 
 func Init():
 	var players = get_tree().get_nodes_in_group("player")
@@ -21,15 +19,21 @@ func Init():
 	playerPosition = playerNode.global_position
 
 func _process(delta):
+	
 	playerPosition = playerNode.global_position
 	
 	var direction_vector = Vector2.ZERO
 	direction_vector = global_position.direction_to(playerPosition).normalized()
-
+	
+	
 	if direction_vector.x > 0:
 		$Sprite.flip_h = false
 	if direction_vector.x < 0:
 		$Sprite.flip_h = true
+	
+	if knockback_state:
+		direction_vector = -direction_vector
+
 
 	if direction_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(direction_vector * enemySpeed, Acceleration * delta)
@@ -40,37 +44,34 @@ func _process(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
 	velocity = move_and_slide(velocity)
-	
-
-func TakeDamage(damage):
-	health -= damage
-
-
-
-
-func _notification(what):
-	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		quitting = true
-
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
-	if quitting:
-		return
-	StartTimerToDestroyWhenNotVisibile(5.0)
-	
-func StartTimerToDestroyWhenNotVisibile(time):
-	currentTimer = Timer.new()
-	currentTimer.connect("timeout",self,"DestroyWhenNotVisible") 
-#timeout is what says in docs, in signals
-#self is who respond to the callback
-#_on_timer_timeout is the callback, can have any name
-	add_child(currentTimer) #to process
-	currentTimer.start(time) #to start
+	if $VisibilityNotifier2D/Timer.is_inside_tree():
+		$VisibilityNotifier2D/Timer.start()
 
-func DestroyWhenNotVisible():
+func DestroyThisEnemy(killedByPlayer):
+	if killedByPlayer:
+		print("LOOTZ!")
 	queue_free()
 
 
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
-	if currentTimer:
-		currentTimer.stop()
+	if !$VisibilityNotifier2D/Timer.is_stopped():
+		$VisibilityNotifier2D/Timer.stop()
+	
+func _on_Timer_timeout():
+	DestroyThisEnemy(false)
+
+
+func _on_HitboxArea_death():
+	DestroyThisEnemy(true)
+
+
+func _on_HitboxArea_take_damage():
+	knockback_state = true
+	$KnockbackTimer.start(0.5)
+	$AnimationPlayer.play("Flash")
+
+
+func _on_KnockbackTimer_timeout():
+	knockback_state = false

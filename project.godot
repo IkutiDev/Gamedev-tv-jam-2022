@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "BaseEnemy",
+"language": "GDScript",
+"path": "res://Enemies/BaseEnemy.gd"
+}, {
+"base": "Area2D",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Health.gd"
+} ]
+_global_script_class_icons={
+"BaseEnemy": "",
+"Health": ""
+}
+
 [application]
 
 config/name="Brunhilda Game"
