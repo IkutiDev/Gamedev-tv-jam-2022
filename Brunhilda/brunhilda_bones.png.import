@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/brunhidla1.png-037e9f7e5ea203859841123c05d505d6.stex"
+path="res://.import/brunhilda_bones.png-7f583167192236ba331f1391efa57ce5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/brunhidla1.png"
-dest_files=[ "res://.import/brunhidla1.png-037e9f7e5ea203859841123c05d505d6.stex" ]
+source_file="res://Brunhilda/brunhilda_bones.png"
+dest_files=[ "res://.import/brunhilda_bones.png-7f583167192236ba331f1391efa57ce5.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hobbit - Idle1.png-48b6876b9967b34693e8a9ebfe768ae1.stex"
+path="res://.import/brunhilda_wraith.png-3cbdddd53f6ba03e8709418f30b59a1a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Hobbit - Idle1.png"
-dest_files=[ "res://.import/Hobbit - Idle1.png-48b6876b9967b34693e8a9ebfe768ae1.stex" ]
+source_file="res://Brunhilda/brunhilda_wraith.png"
+dest_files=[ "res://.import/brunhilda_wraith.png-3cbdddd53f6ba03e8709418f30b59a1a.stex" ]
 
 [params]
 
