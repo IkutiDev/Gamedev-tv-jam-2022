@@ -20,9 +20,9 @@ func _movement(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector.x > 0:
-		$Sprite.flip_h = false
+		scale.x = scale.y * 1
 	if input_vector.x < 0:
-		$Sprite.flip_h = true
+		scale.x = scale.y * -1
 	
 	if input_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(input_vector * MaxSpeed, Acceleration * delta)
@@ -36,3 +36,5 @@ func _bordersCheck():
 		position.y = border_down
 	if position.y >= border_top:
 		position.y = border_top
+		
+

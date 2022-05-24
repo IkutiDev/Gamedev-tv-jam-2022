@@ -27,9 +27,9 @@ func _process(delta):
 	
 	
 	if direction_vector.x > 0:
-		$Sprite.flip_h = false
+		scale.x = scale.y * 1
 	if direction_vector.x < 0:
-		$Sprite.flip_h = true
+		scale.x = scale.y * -1
 
 
 	if direction_vector != Vector2.ZERO:
