@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/DirtTileset.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/Townsfolk.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=5]
 [ext_resource path="res://UI/Menus/MenusManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/GUI/GUI.tscn" type="PackedScene" id=7]
 
 [sub_resource type="TileSet" id=2]
 0/name = "DirtTileset.png 0"
@@ -35,7 +36,6 @@
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 340, 160 )
 current = true
 limit_top = -180
 limit_bottom = 540
@@ -46,7 +46,6 @@ editor_draw_limits = true
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 340, 160 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -65,6 +64,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="SpawnPoints" type="Node2D" parent="YSort/EnemySpawner"]
+position = Vector2( -340, -160 )
 
 [node name="Position2D" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
 position = Vector2( -325, -211 )
@@ -147,6 +147,9 @@ format = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 7 )]
+
 [node name="MenusManager" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
 
 [connection signal="timeout" from="YSort/EnemySpawner/Timer" to="YSort/EnemySpawner" method="_on_Timer_timeout"]
