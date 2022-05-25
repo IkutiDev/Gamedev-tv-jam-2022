@@ -4,7 +4,7 @@
 [ext_resource path="res://UI/EXPBarLayer1Slicepng.png" type="Texture" id=2]
 [ext_resource path="res://UI/Portarait.png" type="Texture" id=3]
 [ext_resource path="res://UI/HPBar.png" type="Texture" id=4]
-[ext_resource path="res://UI/BrunhildaPortrait.png" type="Texture" id=5]
+[ext_resource path="res://Brunhilda/BrunhildaPortraitBase.png" type="Texture" id=5]
 [ext_resource path="res://UI/HPBarLayer1Slice.png" type="Texture" id=6]
 [ext_resource path="res://UI/EXPBarLayer2End.png" type="Texture" id=7]
 [ext_resource path="res://UI/GUI/SkillIcon.tscn" type="PackedScene" id=8]
@@ -17,7 +17,7 @@
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 10 )
 
-[node name="GUI" type="Control"]
+[node name="GUI" type="Control" groups=["GUI"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
