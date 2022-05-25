@@ -1,14 +1,28 @@
 extends KinematicBody2D
 
+class_name Player
+
+signal player_took_damage(maxHealth, currentHealth)
+signal player_increased_revenge(maxRevenge, currentRevenge)
+signal player_has_reborn(portrait)
 
 #Movement
 const FRICTION = 500
+export var portraits : Array
+export var sprites : Array
+var phaseIndex = 0
 export var Acceleration = 500.0
 export var MaxSpeed = 120.0
 var velocity = Vector2.ZERO
 #Borders
 export var border_top = 540
 export var border_down = -180
+
+var currentRevenge = 0
+
+var maxRevengeForPhase = 100
+
+onready var healthClass = $HitboxArea as Health
 
 func _physics_process(delta):
 	_movement(delta)
@@ -38,3 +52,37 @@ func _bordersCheck():
 		position.y = border_top
 		
 
+func IncreaseRevenge(revenge = 1):
+	currentRevenge+=revenge
+	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
+	
+
+func _on_HitboxArea_take_damage(maxHealth, currentHealth):
+	emit_signal("player_took_damage",maxHealth, currentHealth)
+
+
+func _on_HitboxArea_death():
+	if currentRevenge < maxRevengeForPhase:
+		print("You lost lol")
+	else:
+		Reborn()
+
+func Reborn():
+	currentRevenge = 0
+	maxRevengeForPhase = maxRevengeForPhase * 2
+	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
+	$HitboxArea.health = $HitboxArea.maxHealth
+	emit_signal("player_took_damage",healthClass.maxHealth, healthClass.health)
+	emit_signal("player_has_reborn", portraits[phaseIndex])
+	$Sprite.texture = sprites[phaseIndex]
+	#pause game and show cool GUI for skills here!
+	phaseIndex += 1
+
+
+func _on_CheatMode_add_50_revenge():
+	IncreaseRevenge(50)
+
+
+func _on_CheatMode_decrease_50_hp():
+	healthClass.TakeDamage(50)
+	emit_signal("player_took_damage",healthClass.maxHealth, healthClass.health)
