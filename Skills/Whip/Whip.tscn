@@ -1,17 +1,17 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Skills/Whip.gd" type="Script" id=1]
-[ext_resource path="res://Spell Effects/NPT101.png" type="Texture" id=2]
-[ext_resource path="res://Spell Effects/NPT102.png" type="Texture" id=3]
-[ext_resource path="res://Spell Effects/NPT103.png" type="Texture" id=4]
-[ext_resource path="res://Spell Effects/NPT100.png" type="Texture" id=5]
+[ext_resource path="res://Skills/Whip/Whip.gd" type="Script" id=1]
+[ext_resource path="res://Skills/Whip/NPT100.png" type="Texture" id=2]
+[ext_resource path="res://Skills/Whip/NPT101.png" type="Texture" id=3]
+[ext_resource path="res://Skills/Whip/NPT103.png" type="Texture" id=4]
+[ext_resource path="res://Skills/Whip/NPT102.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 27, 13.5 )
+extents = Vector2( 121, 66 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ null, ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), null ],
+"frames": [ null, ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), null ],
 "loop": true,
 "name": "default",
 "speed": 30.0
@@ -21,9 +21,10 @@ animations = [ {
 script = ExtResource( 1 )
 
 [node name="WhipArea2D" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="WhipCollision" type="CollisionShape2D" parent="WhipArea2D"]
-position = Vector2( 17, -3.5 )
+position = Vector2( 111, -11 )
 shape = SubResource( 1 )
 disabled = true
 
@@ -31,8 +32,8 @@ disabled = true
 one_shot = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 17, -3 )
-scale = Vector2( 0.105, 0.0657784 )
+position = Vector2( 114.374, -11.198 )
+scale = Vector2( 0.486286, 0.304639 )
 frames = SubResource( 2 )
 
 [connection signal="area_entered" from="WhipArea2D" to="." method="_on_WhipArea2D_area_entered"]

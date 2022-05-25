@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NPT103.png-af83d71ca8d178235668fdbd53d9d3c4.stex"
+path="res://.import/17_felspell_spritesheet.png-a7fe8841ed3cf4fc8a61dfd6e5fac14b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Spell Effects/NPT103.png"
-dest_files=[ "res://.import/NPT103.png-af83d71ca8d178235668fdbd53d9d3c4.stex" ]
+source_file="res://Skills/Garlic/17_felspell_spritesheet.png"
+dest_files=[ "res://.import/17_felspell_spritesheet.png-a7fe8841ed3cf4fc8a61dfd6e5fac14b.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NPT102.png-eeaa7bbab7a5ce590448380ad89003dc.stex"
+path="res://.import/NPT101.png-acb1f57c8ad1bbbb86cb72aacdf748f9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Spell Effects/NPT102.png"
-dest_files=[ "res://.import/NPT102.png-eeaa7bbab7a5ce590448380ad89003dc.stex" ]
+source_file="res://Skills/Whip/NPT101.png"
+dest_files=[ "res://.import/NPT101.png-acb1f57c8ad1bbbb86cb72aacdf748f9.stex" ]
 
 [params]
 
