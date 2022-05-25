@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BrunhildaPortrait.png-f6b50a4b3d7ee0708a34a5ee9898fc5b.stex"
+path="res://.import/17.png-3453231cfaace3e0d7bdceb461c3c657.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/BrunhildaPortrait.png"
-dest_files=[ "res://.import/BrunhildaPortrait.png-f6b50a4b3d7ee0708a34a5ee9898fc5b.stex" ]
+source_file="res://Pickups/17.png"
+dest_files=[ "res://.import/17.png-3453231cfaace3e0d7bdceb461c3c657.stex" ]
 
 [params]
 
