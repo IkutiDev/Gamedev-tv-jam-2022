@@ -5,6 +5,8 @@ class_name BaseEnemy
 var playerNode : Node2D
 var playerPosition : Vector2
 
+export var revengeOrb : PackedScene
+
 const FRICTION = 500
 export var Acceleration = 500.0
 export var enemySpeed = 120.0
@@ -48,7 +50,13 @@ func _on_VisibilityNotifier2D_viewport_exited(viewport):
 
 func DestroyThisEnemy(killedByPlayer):
 	if killedByPlayer:
-		print("LOOTZ!")
+		var GUI = get_tree().get_nodes_in_group("GUI")[0] as GUI
+		GUI.UpdateKillCounter()
+		randomize()
+		if randi() % 2 == 0:
+			var revengeOrbInstance = revengeOrb.instance()
+			revengeOrbInstance.global_position = global_position
+			get_tree().get_root().add_child(revengeOrbInstance)
 	queue_free()
 
 
@@ -64,5 +72,5 @@ func _on_HitboxArea_death():
 	DestroyThisEnemy(true)
 
 
-func _on_HitboxArea_take_damage():
+func _on_HitboxArea_take_damage(maxHealth, currentHealth):
 	$AnimationPlayer.play("Flash")
