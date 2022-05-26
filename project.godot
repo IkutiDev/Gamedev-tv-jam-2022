@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/BaseEnemy.gd"
 }, {
+"base": "Node2D",
+"class": "BloodBomb",
+"language": "GDScript",
+"path": "res://Skills/BloodBomb/BloodBomb.gd"
+}, {
+"base": "Node2D",
+"class": "EnemySpawner",
+"language": "GDScript",
+"path": "res://Enemies/EnemySpawner.gd"
+}, {
 "base": "Control",
 "class": "GUI",
 "language": "GDScript",
@@ -31,6 +41,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BaseEnemy": "",
+"BloodBomb": "",
+"EnemySpawner": "",
 "GUI": "",
 "Health": "",
 "Player": ""
@@ -41,6 +53,10 @@ _global_script_class_icons={
 config/name="Brunhilda Game"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameManager="*res://GameManager.tscn"
 
 [display]
 

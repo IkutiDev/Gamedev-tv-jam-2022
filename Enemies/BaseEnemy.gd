@@ -11,14 +11,23 @@ const FRICTION = 500
 export var Acceleration = 500.0
 export var enemySpeed = 120.0
 
+export var enemyDamage = 0.2
+export var enemyDamageSpeed = 0.2
+export var maxHealth = 100.0
+
 var velocity = Vector2.ZERO
 
 var knockback_state = false
 
-func Init():
+var _enemySpawner : EnemySpawner
+
+func Init(enemySpawner):
+	_enemySpawner = enemySpawner as EnemySpawner
 	var players = get_tree().get_nodes_in_group("player")
 	playerNode = players[0]
 	playerPosition = playerNode.global_position
+	$HitboxArea.Init(maxHealth)
+	$DamageDealer.Init(self)
 
 func _process(delta):
 	
@@ -45,6 +54,7 @@ func _process(delta):
 	velocity = move_and_slide(velocity)
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	_enemySpawner.visibleEnemies.erase(self)
 	if $VisibilityNotifier2D/Timer.is_inside_tree():
 		$VisibilityNotifier2D/Timer.start()
 
@@ -53,14 +63,16 @@ func DestroyThisEnemy(killedByPlayer):
 		var GUI = get_tree().get_nodes_in_group("GUI")[0] as GUI
 		GUI.UpdateKillCounter()
 		randomize()
-		if randi() % 2 == 0:
+		if randi() % 10 > 0:
 			var revengeOrbInstance = revengeOrb.instance()
 			revengeOrbInstance.global_position = global_position
-			get_tree().get_root().add_child(revengeOrbInstance)
+			get_tree().get_root().call_deferred("add_child", revengeOrbInstance)
+	_enemySpawner.visibleEnemies.erase(self)
 	queue_free()
 
 
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
+	_enemySpawner.visibleEnemies.append(self)
 	if !$VisibilityNotifier2D/Timer.is_stopped():
 		$VisibilityNotifier2D/Timer.stop()
 	

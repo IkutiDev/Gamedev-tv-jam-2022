@@ -10,6 +10,7 @@ signal player_has_reborn(portrait)
 const FRICTION = 500
 export var portraits : Array
 export var sprites : Array
+export var maxHealth = 100
 var phaseIndex = 0
 export var Acceleration = 500.0
 export var MaxSpeed = 120.0
@@ -23,6 +24,9 @@ var currentRevenge = 0
 var maxRevengeForPhase = 100
 
 onready var healthClass = $HitboxArea as Health
+
+func _ready():
+	$HitboxArea.Init(maxHealth)
 
 func _physics_process(delta):
 	_movement(delta)
@@ -59,6 +63,7 @@ func IncreaseRevenge(revenge = 1):
 
 func _on_HitboxArea_take_damage(maxHealth, currentHealth):
 	emit_signal("player_took_damage",maxHealth, currentHealth)
+	$AnimationPlayer.play("Flash")
 
 
 func _on_HitboxArea_death():
@@ -71,7 +76,7 @@ func Reborn():
 	currentRevenge = 0
 	maxRevengeForPhase = maxRevengeForPhase * 2
 	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
-	$HitboxArea.health = $HitboxArea.maxHealth
+	$HitboxArea.FullyRestoreHealth()
 	emit_signal("player_took_damage",healthClass.maxHealth, healthClass.health)
 	emit_signal("player_has_reborn", portraits[phaseIndex])
 	$Sprite.texture = sprites[phaseIndex]

@@ -39,6 +39,9 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
 revengeOrb = ExtResource( 5 )
+enemySpeed = 150.0
+enemyDamage = 1.0
+enemyDamageSpeed = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

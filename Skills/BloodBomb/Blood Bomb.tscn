@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Skills/BloodBomb/frame_1.png" type="Texture" id=1]
+[ext_resource path="res://Skills/BloodBomb/frame_3.png" type="Texture" id=2]
+[ext_resource path="res://Skills/BloodBomb/frame_2.png" type="Texture" id=3]
+[ext_resource path="res://Skills/BloodBomb/BloodBomb.gd" type="Script" id=4]
+[ext_resource path="res://Skills/BloodBomb/Blood Bomb Explosion.tscn" type="PackedScene" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 13.0
+
+[node name="Blood Bomb" type="Node2D"]
+script = ExtResource( 4 )
+BloodBombExplosionScene = ExtResource( 5 )
+speed = 200
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+playing = true
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite/Area2D"]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_area_entered"]
