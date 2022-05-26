@@ -7,7 +7,7 @@
 [ext_resource path="res://Health.gd" type="Script" id=5]
 [ext_resource path="res://Skills/Whip/Whip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Skills/Hammer/HammerSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Skills/Daggers.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Skills/Boomerang/BoomerangSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Skills/Clock.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Brunhilda/brunhilda_all_muscle.png" type="Texture" id=11]
 [ext_resource path="res://Brunhilda/brunhilda_bones.png" type="Texture" id=12]
@@ -52,8 +52,6 @@ MaxSpeed = 200.0
 [node name="Whip" parent="." instance=ExtResource( 6 )]
 position = Vector2( 21, 2 )
 
-[node name="Daggers" parent="." instance=ExtResource( 8 )]
-
 [node name="HammerSpawner" parent="." instance=ExtResource( 7 )]
 
 [node name="Clock" parent="." instance=ExtResource( 10 )]
@@ -85,6 +83,8 @@ shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Flash = SubResource( 6 )
+
+[node name="BoomerangSpawner" parent="." instance=ExtResource( 8 )]
 
 [connection signal="death" from="HitboxArea" to="." method="_on_HitboxArea_death"]
 [connection signal="take_damage" from="HitboxArea" to="." method="_on_HitboxArea_take_damage"]

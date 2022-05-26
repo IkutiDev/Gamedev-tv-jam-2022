@@ -25,6 +25,9 @@ var maxRevengeForPhase = 100
 
 onready var healthClass = $HitboxArea as Health
 
+func _enter_tree():
+	GameManager.player = self
+
 func _ready():
 	$HitboxArea.Init(maxHealth)
 
@@ -77,7 +80,7 @@ func Reborn():
 	maxRevengeForPhase = maxRevengeForPhase * 2
 	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
 	$HitboxArea.FullyRestoreHealth()
-	emit_signal("player_took_damage",healthClass.maxHealth, healthClass.health)
+	emit_signal("player_took_damage",maxHealth, $HitboxArea.currentHealth)
 	emit_signal("player_has_reborn", portraits[phaseIndex])
 	$Sprite.texture = sprites[phaseIndex]
 	#pause game and show cool GUI for skills here!
