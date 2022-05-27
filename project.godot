@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://Skills/BloodBomb/BloodBomb.gd"
 }, {
 "base": "Node2D",
+"class": "BloodPool",
+"language": "GDScript",
+"path": "res://Skills/BloodTrail/BloodPool.gd"
+}, {
+"base": "Node2D",
 "class": "Boomerang",
 "language": "GDScript",
 "path": "res://Skills/Boomerang/BoomerangProjectile.gd"
@@ -52,6 +57,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BaseEnemy": "",
 "BloodBomb": "",
+"BloodPool": "",
 "Boomerang": "",
 "BoomerangSpawner": "",
 "EnemySpawner": "",

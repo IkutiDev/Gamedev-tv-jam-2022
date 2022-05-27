@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Brunhilda/brunhilda_base.png" type="Texture" id=1]
 [ext_resource path="res://Brunhilda/Player.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Skills/Whip/Whip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Skills/Hammer/HammerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Skills/Boomerang/BoomerangSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Skills/BloodTrail/BloodTrail.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Brunhilda/brunhilda_all_muscle.png" type="Texture" id=11]
 [ext_resource path="res://Brunhilda/brunhilda_bones.png" type="Texture" id=12]
 [ext_resource path="res://Brunhilda/BrunhildaPortraitGhost.png" type="Texture" id=13]
@@ -47,6 +48,9 @@ portraits = [ ExtResource( 15 ), ExtResource( 14 ), ExtResource( 13 ) ]
 sprites = [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 4 ) ]
 Acceleration = 700.0
 MaxSpeed = 200.0
+
+[node name="BloodTrail" parent="." instance=ExtResource( 9 )]
+position = Vector2( -1, 23 )
 
 [node name="Whip" parent="." instance=ExtResource( 6 )]
 position = Vector2( 21, 2 )
