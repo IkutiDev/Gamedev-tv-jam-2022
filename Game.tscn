@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/DirtTileset.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Skills/TarrotCards/skill_icons12.png" type="Texture" id=10]
 [ext_resource path="res://Skills/TarrotCards/skill_icons7.png" type="Texture" id=11]
 [ext_resource path="res://Skills/Garlic/Garlic.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Skills/Clock/Clock.tscn" type="PackedScene" id=13]
 
 [sub_resource type="TileSet" id=2]
 0/name = "DirtTileset.png 0"
@@ -48,6 +49,9 @@ limit_smoothed = true
 smoothing_enabled = true
 editor_draw_limits = true
 
+[node name="Clock" parent="." instance=ExtResource( 13 )]
+rotation = -1.5708
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -80,6 +84,10 @@ remote_path = NodePath("../../EnemySpawner/SpawnPoints")
 [node name="RemoteTransform2D3" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Garlic")
 update_scale = false
+
+[node name="RemoteTransform2D4" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Clock")
+update_rotation = false
 
 [node name="EnemySpawner" type="Node2D" parent="YSort"]
 position = Vector2( 340, 160 )
