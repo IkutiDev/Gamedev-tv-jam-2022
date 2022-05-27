@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Enemies/saint_man.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/Boss.gd" type="Script" id=2]
+[ext_resource path="res://Health.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/EnemyDamageArea.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+height = 34.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 26, 33.5 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.560784, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 28, 32 )
+
+[node name="Boss" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 6, 27 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="DamageDealer" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="HitboxArea" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxArea"]
+visible = false
+position = Vector2( -1, -0.5 )
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2( 2, 1 )
+shape = SubResource( 5 )
+
+[connection signal="death" from="HitboxArea" to="." method="_on_HitboxArea_death"]
+[connection signal="take_damage" from="HitboxArea" to="." method="_on_HitboxArea_take_damage"]
+[connection signal="area_entered" from="Area2D" to="DamageDealer" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="DamageDealer" method="_on_Area2D_area_exited"]

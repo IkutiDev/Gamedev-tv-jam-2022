@@ -11,6 +11,16 @@ const FRICTION = 500
 export var portraits : Array
 export var sprites : Array
 export var maxHealth = 100
+#Skills Scenes
+export var garlicSkillScene : PackedScene
+export var whipSkillScene : PackedScene
+export var hammerSkillScene : PackedScene
+export var bloodBombSkillScene : PackedScene
+export var clockSkillScene : PackedScene
+export var bonerMangSkillScene : PackedScene
+export var bloodTrailSkillScene : PackedScene
+export var bonesSkillScene : PackedScene
+export var tarrotSkillScene : PackedScene
 var phaseIndex = 0
 export var Acceleration = 500.0
 export var MaxSpeed = 120.0
@@ -93,4 +103,4 @@ func _on_CheatMode_add_50_revenge():
 
 func _on_CheatMode_decrease_50_hp():
 	healthClass.TakeDamage(50)
-	emit_signal("player_took_damage",healthClass.maxHealth, healthClass.health)
+	emit_signal("player_took_damage",maxHealth, $HitboxArea.currentHealth)

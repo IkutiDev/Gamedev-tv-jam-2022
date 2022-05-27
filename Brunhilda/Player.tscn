@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Brunhilda/brunhilda_base.png" type="Texture" id=1]
 [ext_resource path="res://Brunhilda/Player.gd" type="Script" id=2]
@@ -9,11 +9,15 @@
 [ext_resource path="res://Skills/Hammer/HammerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Skills/Boomerang/BoomerangSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Skills/BloodTrail/BloodTrail.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Skills/Bonestorm/Bonestorm.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Brunhilda/brunhilda_all_muscle.png" type="Texture" id=11]
 [ext_resource path="res://Brunhilda/brunhilda_bones.png" type="Texture" id=12]
 [ext_resource path="res://Brunhilda/BrunhildaPortraitGhost.png" type="Texture" id=13]
 [ext_resource path="res://Brunhilda/BrunhildaPortraitBones.png" type="Texture" id=14]
 [ext_resource path="res://Brunhilda/BrunhildaPortraitMeat.png" type="Texture" id=15]
+[ext_resource path="res://Skills/Clock/Clock.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Skills/Garlic/Garlic.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Skills/TarrotCards/TarrotCards.tscn" type="PackedScene" id=18]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -46,18 +50,16 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 portraits = [ ExtResource( 15 ), ExtResource( 14 ), ExtResource( 13 ) ]
 sprites = [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 4 ) ]
+garlicSkillScene = ExtResource( 17 )
+whipSkillScene = ExtResource( 6 )
+hammerSkillScene = ExtResource( 7 )
+bloodBombSkillScene = ExtResource( 3 )
+clockSkillScene = ExtResource( 16 )
+bonerMangSkillScene = ExtResource( 8 )
+bloodTrailSkillScene = ExtResource( 9 )
+bonesSkillScene = ExtResource( 10 )
 Acceleration = 700.0
 MaxSpeed = 200.0
-
-[node name="BloodTrail" parent="." instance=ExtResource( 9 )]
-position = Vector2( -1, 23 )
-
-[node name="Whip" parent="." instance=ExtResource( 6 )]
-position = Vector2( 21, 2 )
-
-[node name="HammerSpawner" parent="." instance=ExtResource( 7 )]
-
-[node name="Blood Bomb Spawner" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 20 )
@@ -84,7 +86,9 @@ shape = SubResource( 5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Flash = SubResource( 6 )
 
-[node name="BoomerangSpawner" parent="." instance=ExtResource( 8 )]
+[node name="Bonestorm" parent="." instance=ExtResource( 10 )]
+
+[node name="TarrotCards" parent="." instance=ExtResource( 18 )]
 
 [connection signal="death" from="HitboxArea" to="." method="_on_HitboxArea_death"]
 [connection signal="take_damage" from="HitboxArea" to="." method="_on_HitboxArea_take_damage"]

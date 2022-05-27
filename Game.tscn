@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/DirtTileset.png" type="Texture" id=2]
@@ -8,11 +8,10 @@
 [ext_resource path="res://UI/Menus/MenusManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/GUI/GUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CheatMode.gd" type="Script" id=8]
-[ext_resource path="res://Skills/TarrotCards/skill_icons13.png" type="Texture" id=9]
-[ext_resource path="res://Skills/TarrotCards/skill_icons12.png" type="Texture" id=10]
-[ext_resource path="res://Skills/TarrotCards/skill_icons7.png" type="Texture" id=11]
-[ext_resource path="res://Skills/Garlic/Garlic.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Skills/Clock/Clock.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Enemies/Militia.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Enemies/Priest.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Enemies/Boss.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemies/Knight.tscn" type="PackedScene" id=15]
 
 [sub_resource type="TileSet" id=2]
 0/name = "DirtTileset.png 0"
@@ -49,9 +48,6 @@ limit_smoothed = true
 smoothing_enabled = true
 editor_draw_limits = true
 
-[node name="Clock" parent="." instance=ExtResource( 13 )]
-rotation = -1.5708
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -69,8 +65,6 @@ tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
-[node name="Garlic" parent="." instance=ExtResource( 12 )]
-
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
@@ -81,22 +75,29 @@ remote_path = NodePath("../../../Camera2D")
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../EnemySpawner/SpawnPoints")
 
-[node name="RemoteTransform2D3" type="RemoteTransform2D" parent="YSort/Player"]
-remote_path = NodePath("../../../Garlic")
-update_scale = false
-
-[node name="RemoteTransform2D4" type="RemoteTransform2D" parent="YSort/Player"]
-remote_path = NodePath("../../../Clock")
-update_rotation = false
-
 [node name="EnemySpawner" type="Node2D" parent="YSort"]
 position = Vector2( 340, 160 )
 script = ExtResource( 5 )
 enemiesContainerNodePath = NodePath("../EnemiesContainer")
-enemy = ExtResource( 4 )
+townsfolkScene = ExtResource( 4 )
+militiaScene = ExtResource( 12 )
+priestScene = ExtResource( 13 )
+knightScene = ExtResource( 15 )
+BossScene = ExtResource( 14 )
 
-[node name="Timer" type="Timer" parent="YSort/EnemySpawner"]
+[node name="TownsFolkTimer" type="Timer" parent="YSort/EnemySpawner"]
 wait_time = 0.5
+autostart = true
+
+[node name="MilitiaTimer" type="Timer" parent="YSort/EnemySpawner"]
+autostart = true
+
+[node name="PriestTimer" type="Timer" parent="YSort/EnemySpawner"]
+wait_time = 1.2
+autostart = true
+
+[node name="KnightTimer" type="Timer" parent="YSort/EnemySpawner"]
+wait_time = 2.0
 autostart = true
 
 [node name="SpawnPoints" type="Node2D" parent="YSort/EnemySpawner"]
@@ -173,30 +174,12 @@ __meta__ = {
 [node name="CheatMode" type="Node2D" parent="."]
 script = ExtResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.552941 )
-position = Vector2( -0.499981, -4.17233e-06 )
-scale = Vector2( 7.28125, 4.10417 )
-texture = ExtResource( 9 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.552941 )
-position = Vector2( -0.499981, -4.17233e-06 )
-scale = Vector2( 7.28125, 4.10417 )
-texture = ExtResource( 10 )
-
-[node name="Sprite3" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.552941 )
-position = Vector2( -0.499981, -4.17233e-06 )
-scale = Vector2( 7.28125, 4.10417 )
-texture = ExtResource( 11 )
-
 [connection signal="player_has_reborn" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_has_reborn"]
 [connection signal="player_increased_revenge" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_increased_revenge"]
 [connection signal="player_took_damage" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_took_damage"]
-[connection signal="timeout" from="YSort/EnemySpawner/Timer" to="YSort/EnemySpawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="YSort/EnemySpawner/TownsFolkTimer" to="YSort/EnemySpawner" method="_on_TownsFolkTimer_timeout"]
+[connection signal="timeout" from="YSort/EnemySpawner/MilitiaTimer" to="YSort/EnemySpawner" method="_on_MilitiaTimer_timeout"]
+[connection signal="timeout" from="YSort/EnemySpawner/PriestTimer" to="YSort/EnemySpawner" method="_on_PriestTimer_timeout"]
+[connection signal="timeout" from="YSort/EnemySpawner/KnightTimer" to="YSort/EnemySpawner" method="_on_KnightTimer_timeout"]
 [connection signal="add_50_revenge" from="CheatMode" to="YSort/Player" method="_on_CheatMode_add_50_revenge"]
 [connection signal="decrease_50_hp" from="CheatMode" to="YSort/Player" method="_on_CheatMode_decrease_50_hp"]

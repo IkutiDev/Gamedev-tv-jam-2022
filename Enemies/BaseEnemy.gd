@@ -21,6 +21,8 @@ var knockback_state = false
 
 var _enemySpawner : EnemySpawner
 
+onready var _originalSpeed = enemySpeed
+
 func Init(enemySpawner):
 	_enemySpawner = enemySpawner as EnemySpawner
 	var players = get_tree().get_nodes_in_group("player")
@@ -82,7 +84,15 @@ func _on_Timer_timeout():
 
 func _on_HitboxArea_death():
 	DestroyThisEnemy(true)
+	
+func SlowDown():
+	enemySpeed = 10
+	$SlowTimer.start(5)
 
 
 func _on_HitboxArea_take_damage(maxHealth, currentHealth):
 	$AnimationPlayer.play("Flash")
+
+
+func _on_SlowTimer_timeout():
+	enemySpeed = _originalSpeed
