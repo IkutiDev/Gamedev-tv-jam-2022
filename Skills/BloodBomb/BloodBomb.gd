@@ -6,17 +6,21 @@ export var BloodBombExplosionScene : PackedScene
 export var speed = 10
 export var damage = 10
 
+var _enemy : BaseEnemy
 var _enemyPosition = Vector2.ZERO
 var entityHealth : Health
 
-func Init(enemyPosition):
-	_enemyPosition = enemyPosition
+func Init(enemy):
+	_enemy = enemy as BaseEnemy
+	_enemyPosition = _enemy.global_position
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 func _process(delta):
+	if is_instance_valid(_enemy):
+		_enemyPosition = _enemy.global_position
 	var direction_vector = Vector2.ZERO
 	direction_vector = global_position.direction_to(_enemyPosition).normalized()
 	
@@ -37,9 +41,13 @@ func _dealDamage(entity):
 	entityHealth.TakeDamage(damage)
 
 func _on_Area2D_area_entered(area):
-	if area is Health:
+	var health = area as Health
+	if health == null:
+		return
+	var enemy = health.get_parent() as BaseEnemy
+	if enemy != null and enemy == _enemy:
 		_dealDamage(area)
-	SpawnExplosion()
+		SpawnExplosion()
 	
 func SpawnExplosion():
 	var bloodBombExplosionInstance = BloodBombExplosionScene.instance()
