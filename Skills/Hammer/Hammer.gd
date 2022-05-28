@@ -6,7 +6,8 @@ extends Node2D
 # var b = "text"
 
 
-var damage = 30
+export var damage = 30
+export var movementSpeed = 25
 
 var entityHealth : Health
 
@@ -16,7 +17,7 @@ func _ready():
 
 
 func _process(delta):
-	$Path2D/PathFollow2D.offset += 25 * delta
+	$Path2D/PathFollow2D.offset += movementSpeed * delta
 	if $Path2D/PathFollow2D.unit_offset >= 1:
 		queue_free()
 

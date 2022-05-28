@@ -5,9 +5,9 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var whipCooldown = 2.0
+export var whipCooldown = 2.0
 
-var damage = 10
+export var damage = 10
 
 var entityHealth : Health
 
