@@ -60,6 +60,8 @@ bonesSkillScene = ExtResource( 10 )
 Acceleration = 700.0
 MaxSpeed = 200.0
 
+[node name="Garlic" parent="." instance=ExtResource( 17 )]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 20 )

@@ -2,18 +2,34 @@ extends Node2D
 
 class_name Bone
 
-export var SmallBoneScene : PackedScene
 export var speed = 10
 export var damage = 10
+export var bounces = 3
 export var selfDestructTime = 10
 
+export var distanceToEnemy = 4
+
 var entityHealth : Health
+
+var currentEnemy : BaseEnemy
+var currentProjectileBounces = 0
 
 func _ready():
 	$Timer.start(selfDestructTime)
 
 func _process(delta):
-	self.translate((self.transform.y.normalized() + self.transform.x.normalized()) * speed * delta)
+	var direction_vector = Vector2.ZERO
+	if(!is_instance_valid(currentEnemy)):
+		SearchForEnemy()
+		return
+	if global_position.distance_to(currentEnemy.global_position) < distanceToEnemy:
+		SearchForEnemy()
+		currentProjectileBounces +=1
+		if currentProjectileBounces > bounces:
+			queue_free() 
+		return
+	direction_vector = global_position.direction_to(currentEnemy.global_position).normalized()
+	global_position = global_position.move_toward(currentEnemy.global_position, delta * speed)
 
 func _dealDamage(entity):
 	entityHealth = entity
@@ -24,24 +40,18 @@ func _on_Area2D_area_entered(area):
 	if health == null:
 		return
 	_dealDamage(area)
-	BoneExplosion()
-	queue_free()
-		
-func BoneExplosion():
-	var children = get_node("SpawnPositions").get_children() as Array
-	for i in get_node("SpawnPositions").get_child_count():
-		SpawnSmallBone(children[i])
-		
-func SpawnSmallBone(spawnPosition):
-	var _spawnPosition = spawnPosition as Position2D
-	var smallBoneInstance = SmallBoneScene.instance() as BoneSmall
-	smallBoneInstance.global_position = _spawnPosition.global_position
-	smallBoneInstance.rotation = _spawnPosition.rotation
-	get_tree().get_root().call_deferred("add_child", smallBoneInstance)
+	
+func Init(enemy):
+	currentEnemy = enemy as BaseEnemy
 
-func SelfDestruct():
-	queue_free()
-
+func SearchForEnemy():
+	randomize()
+	var index = randi() % GameManager.enemySpawner.visibleEnemies.size()
+	var enemy = GameManager.enemySpawner.visibleEnemies[index]
+	while enemy == currentEnemy:
+		index = randi() % GameManager.enemySpawner.visibleEnemies.size()
+		enemy = GameManager.enemySpawner.visibleEnemies[index]
+	currentEnemy = enemy
 
 func _on_Timer_timeout():
 	queue_free()

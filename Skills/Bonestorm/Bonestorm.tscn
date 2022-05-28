@@ -6,23 +6,7 @@
 [node name="Bonestorm" type="Node2D"]
 script = ExtResource( 1 )
 boneScene = ExtResource( 2 )
-
-[node name="SpawnPositions" type="Node2D" parent="."]
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions"]
-position = Vector2( -20, -20 )
-rotation = -3.31613
-
-[node name="Position2D3" type="Position2D" parent="SpawnPositions"]
-position = Vector2( 20, -20 )
-rotation = 4.62512
-
-[node name="Position2D5" type="Position2D" parent="SpawnPositions"]
-position = Vector2( 14, 12 )
-
-[node name="Position2D7" type="Position2D" parent="SpawnPositions"]
-position = Vector2( -16, 12 )
-rotation = 1.309
+projectileCount = 15
 
 [node name="Timer" type="Timer" parent="."]
 

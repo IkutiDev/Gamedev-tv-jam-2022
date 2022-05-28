@@ -4,6 +4,7 @@ extends Node2D
 
 export var boneScene : PackedScene
 export var cooldown = 5.0
+export var projectileCount = 5
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -23,13 +24,16 @@ func _on_Timer_timeout():
 	BoneExplosion()
 	
 func BoneExplosion():
-	var children = get_node("SpawnPositions").get_children() as Array
-	for i in get_node("SpawnPositions").get_child_count():
-		SpawnBone(children[i])
+	var duplicateEnemiesArray = GameManager.enemySpawner.visibleEnemies
+	for i in projectileCount:
+		randomize()
+		var index = randi() % duplicateEnemiesArray.size()
+		var enemy = duplicateEnemiesArray[index]
+		duplicateEnemiesArray.erase(enemy)
+		SpawnBone(enemy)
 		
-func SpawnBone(spawnPosition):
-	var _spawnPosition = spawnPosition as Position2D
+func SpawnBone(enemy):
 	var boneInstance = boneScene.instance() as Bone
-	boneInstance.global_position = _spawnPosition.global_position
-	boneInstance.rotation = _spawnPosition.rotation
+	boneInstance.global_position = global_position
+	boneInstance.Init(enemy)
 	get_tree().get_root().add_child(boneInstance)

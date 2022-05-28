@@ -1,45 +1,28 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Skills/Bonestorm/femur2.png" type="Texture" id=1]
 [ext_resource path="res://Rotator.gd" type="Script" id=2]
 [ext_resource path="res://Skills/Bonestorm/BonestormProjectile.gd" type="Script" id=3]
-[ext_resource path="res://Skills/Bonestorm/BonestormSmallerProjectile.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 22 )
 
 [node name="BonestormProjectile" type="Node2D"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 3 )
-SmallBoneScene = ExtResource( 4 )
 speed = 200
+bounces = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+rotatorSpeed = 30
 
 [node name="Area2D" type="Area2D" parent="Sprite"]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
 shape = SubResource( 1 )
-
-[node name="SpawnPositions" type="Node2D" parent="."]
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions"]
-position = Vector2( -20, -20 )
-rotation = -3.31613
-
-[node name="Position2D3" type="Position2D" parent="SpawnPositions"]
-position = Vector2( 20, -20 )
-rotation = 4.62512
-
-[node name="Position2D5" type="Position2D" parent="SpawnPositions"]
-position = Vector2( 14, 12 )
-
-[node name="Position2D7" type="Position2D" parent="SpawnPositions"]
-position = Vector2( -16, 12 )
-rotation = 1.309
 
 [node name="Timer" type="Timer" parent="."]
 
