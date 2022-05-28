@@ -37,7 +37,7 @@ func SpawnSmallBone(spawnPosition):
 	var smallBoneInstance = SmallBoneScene.instance() as BoneSmall
 	smallBoneInstance.global_position = _spawnPosition.global_position
 	smallBoneInstance.rotation = _spawnPosition.rotation
-	get_tree().get_root().add_child(smallBoneInstance)
+	get_tree().get_root().call_deferred("add_child", smallBoneInstance)
 
 func SelfDestruct():
 	queue_free()

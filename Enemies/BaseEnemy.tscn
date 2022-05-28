@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Enemies/townsfolk.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/BaseEnemy.gd" type="Script" id=2]
@@ -28,6 +28,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 10, 0.5, 0.5, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Poison"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.145098, 0.478431, 0.145098, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="CapsuleShape2D" id=3]
@@ -73,6 +90,7 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Flash = SubResource( 2 )
+anims/Poison = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -83,6 +101,11 @@ shape = SubResource( 3 )
 [node name="SlowTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="PoisonTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PoisonTimerDamageTicks" type="Timer" parent="."]
+
 [connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
 [connection signal="timeout" from="VisibilityNotifier2D/Timer" to="." method="_on_Timer_timeout"]
@@ -91,3 +114,5 @@ one_shot = true
 [connection signal="area_entered" from="Area2D" to="DamageDealer" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="DamageDealer" method="_on_Area2D_area_exited"]
 [connection signal="timeout" from="SlowTimer" to="." method="_on_SlowTimer_timeout"]
+[connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]
+[connection signal="timeout" from="PoisonTimerDamageTicks" to="." method="_on_PoisonTimerDamageTicks_timeout"]

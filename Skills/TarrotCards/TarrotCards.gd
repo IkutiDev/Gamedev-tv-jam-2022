@@ -12,6 +12,10 @@ export var slowEffectSprite : Texture
 export var minCooldown = 15.0
 export var maxCooldown = 30.0
 
+export var poisonDamage = 5
+export var poisonLength = 10
+export var poisonTickRate = 0.5
+
 var random = RandomNumberGenerator.new()
 
 
@@ -36,15 +40,17 @@ func SpawnEffect():
 
 func DamageEffect():
 	$Image.texture = damageEffectSprite
-	for item in GameManager.enemySpawner.visibleEnemies:
-		var enemy = item as BaseEnemy
+	for i in GameManager.enemySpawner.visibleEnemies:
+		GameManager.enemySpawner.visibleEnemies.push_front(i)
+		var enemy = i as BaseEnemy
 		enemy.DestroyThisEnemy(true)
 
 func PoisonEffect():
 	$Image.texture = poisonEffectSprite
 	for item in GameManager.enemySpawner.visibleEnemies:
 		var enemy = item as BaseEnemy
-		enemy.DestroyThisEnemy(true)
+		enemy.Poison(poisonLength, poisonTickRate, poisonDamage)
+
 
 func SlowEffect():
 	$Image.texture = slowEffectSprite

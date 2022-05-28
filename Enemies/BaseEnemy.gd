@@ -18,6 +18,8 @@ export var maxHealth = 100.0
 var velocity = Vector2.ZERO
 
 var knockback_state = false
+var poison_state = false
+var _poisonDamage = 5
 
 var _enemySpawner : EnemySpawner
 
@@ -61,6 +63,7 @@ func _on_VisibilityNotifier2D_viewport_exited(viewport):
 		$VisibilityNotifier2D/Timer.start()
 
 func DestroyThisEnemy(killedByPlayer):
+	print("Killing enemy "+get_instance_id() as String)
 	if killedByPlayer:
 		var GUI = get_tree().get_nodes_in_group("GUI")[0] as GUI
 		GUI.UpdateKillCounter()
@@ -85,6 +88,12 @@ func _on_Timer_timeout():
 func _on_HitboxArea_death():
 	DestroyThisEnemy(true)
 	
+func Poison(length, tickTime, poisonDamage):
+	$AnimationPlayer.play("Poison")
+	$PoisonTimer.start(length)
+	_poisonDamage = poisonDamage
+	$PoisonTimerDamageTicks.start(tickTime)
+	
 func SlowDown():
 	enemySpeed = 10
 	$SlowTimer.start(5)
@@ -96,3 +105,13 @@ func _on_HitboxArea_take_damage(maxHealth, currentHealth):
 
 func _on_SlowTimer_timeout():
 	enemySpeed = _originalSpeed
+
+
+func _on_PoisonTimer_timeout():
+	$PoisonTimerDamageTicks.stop()
+	$AnimationPlayer.stop(true)
+	
+
+
+func _on_PoisonTimerDamageTicks_timeout():
+	$HitboxArea.TakeDamage(_poisonDamage)
