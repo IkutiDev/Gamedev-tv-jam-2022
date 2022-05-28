@@ -10,6 +10,8 @@ export var revengeOrb : PackedScene
 const FRICTION = 500
 export var Acceleration = 500.0
 export var enemySpeed = 120.0
+export var cowardMovement = false
+export var cowardMovementMaxDistance = 10
 
 export var enemyDamage = 0.2
 export var enemyDamageSpeed = 0.2
@@ -45,7 +47,10 @@ func _process(delta):
 		scale.x = scale.y * 1
 	if direction_vector.x < 0:
 		scale.x = scale.y * -1
-
+	
+	if(cowardMovement):
+		if(global_position.distance_to(playerPosition))<= cowardMovementMaxDistance:
+			direction_vector = -direction_vector
 
 	if direction_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(direction_vector * enemySpeed, Acceleration * delta)

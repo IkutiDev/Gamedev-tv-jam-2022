@@ -4,8 +4,9 @@
 [ext_resource path="res://Enemies/BaseEnemy.tscn" type="PackedScene" id=2]
 
 [node name="Priest" instance=ExtResource( 2 )]
-Acceleration = 500.0
 enemySpeed = 75.0
+cowardMovement = true
+cowardMovementMaxDistance = 200
 maxHealth = 90.0
 
 [node name="Sprite" parent="." index="0"]
