@@ -94,13 +94,13 @@ func _on_HitboxArea_death():
 	DestroyThisEnemy(true)
 	
 func Poison(length, tickTime, poisonDamage):
-	$AnimationPlayer.play("Poison")
+	$PoisonAnimationPlayer.play("Poison")
 	$PoisonTimer.start(length)
 	_poisonDamage = poisonDamage
 	$PoisonTimerDamageTicks.start(tickTime)
 	
-func SlowDown():
-	enemySpeed = 10
+func SlowDown(slow):
+	enemySpeed = enemySpeed / slow
 	$SlowTimer.start(5)
 
 
@@ -114,7 +114,7 @@ func _on_SlowTimer_timeout():
 
 func _on_PoisonTimer_timeout():
 	$PoisonTimerDamageTicks.stop()
-	$AnimationPlayer.stop(true)
+	$PoisonAnimationPlayer.stop(true)
 	
 
 

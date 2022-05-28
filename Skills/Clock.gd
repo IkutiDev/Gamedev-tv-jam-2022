@@ -42,6 +42,7 @@ func _dealDamage(entity):
 func _on_Timer_timeout():
 	$AnimatedSprite.show()
 	$AnimatedSprite.set_process(true)
+	$AudioStreamPlayer.play()
 	$ClockTurningTimer.start(1)
 
 
@@ -51,6 +52,8 @@ func _on_ClockTurningTimer_timeout():
 		StartClockCooldown()
 		return
 	rotation_degrees += 30
+	if rotation_degrees >= 360:
+		rotation_degrees = 0
 	if rotation_degrees as int == startRotation as int:
 		lastTick = true
 

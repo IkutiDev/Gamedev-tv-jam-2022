@@ -22,6 +22,7 @@ func _ready():
 #	pass
 
 func _enableWhip():
+	$AudioStreamPlayer.play()
 	$AnimatedSprite.play()
 	$WhipArea2D/WhipCollision.disabled = false
 	

@@ -24,6 +24,8 @@ func _ready():
 func _on_Timer_timeout():
 	var bloodBombInstance = bloodBombScene.instance() as BloodBomb
 	randomize()
+	if enemySpawner.visibleEnemies.size() == 0:
+		return
 	var enemy = enemySpawner.visibleEnemies[randi() % enemySpawner.visibleEnemies.size()] as BaseEnemy
 	bloodBombInstance.Init(enemy)
 	bloodBombInstance.global_position = global_position

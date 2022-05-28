@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Brunhilda/brunhilda_base.png" type="Texture" id=1]
 [ext_resource path="res://Brunhilda/Player.gd" type="Script" id=2]
@@ -17,6 +17,12 @@
 [ext_resource path="res://Brunhilda/BrunhildaPortraitMeat.png" type="Texture" id=15]
 [ext_resource path="res://Skills/Clock/Clock.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Skills/Garlic/Garlic.tscn" type="PackedScene" id=17]
+[ext_resource path="res://SFX/Collect.wav" type="AudioStream" id=18]
+[ext_resource path="res://Poison.tres" type="Animation" id=19]
+[ext_resource path="res://SFX/Receive dmg.wav" type="AudioStream" id=20]
+[ext_resource path="res://SFX/Morph.wav" type="AudioStream" id=21]
+[ext_resource path="res://SFX/Wraith.wav" type="AudioStream" id=22]
+[ext_resource path="res://Skills/TarrotCards/TarrotCards.tscn" type="PackedScene" id=23]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -30,6 +36,22 @@ height = 32.0
 radius = 42.7551
 
 [sub_resource type="Animation" id=6]
+resource_name = "Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
 resource_name = "Flash"
 length = 0.2
 tracks/0/type = "value"
@@ -60,8 +82,6 @@ bonesSkillScene = ExtResource( 10 )
 Acceleration = 700.0
 MaxSpeed = 200.0
 
-[node name="Garlic" parent="." instance=ExtResource( 17 )]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 20 )
@@ -90,8 +110,50 @@ shape = SubResource( 5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Flash = SubResource( 6 )
 
+[node name="PoisonAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 7 )
+anims/Poison = ExtResource( 19 )
+
+[node name="SlowTimer" type="Timer" parent="."]
+
+[node name="PoisonTimer" type="Timer" parent="."]
+
+[node name="PoisonTimerDamageTicks" type="Timer" parent="."]
+
+[node name="BoomerangSpawner" parent="." instance=ExtResource( 8 )]
+
 [node name="Bonestorm" parent="." instance=ExtResource( 10 )]
-visible = false
+
+[node name="Blood Bomb Spawner" parent="." instance=ExtResource( 3 )]
+
+[node name="Clock" parent="." instance=ExtResource( 16 )]
+
+[node name="BloodTrail" parent="." instance=ExtResource( 9 )]
+
+[node name="Garlic" parent="." instance=ExtResource( 17 )]
+
+[node name="HammerSpawner" parent="." instance=ExtResource( 7 )]
+
+[node name="Whip" parent="." instance=ExtResource( 6 )]
+
+[node name="TarrotCards" parent="." instance=ExtResource( 23 )]
+
+[node name="CollectAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+
+[node name="ReceiveDmgAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+
+[node name="RebornAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -10.0
+
+[node name="RebornGhostAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = -10.0
 
 [connection signal="death" from="HitboxArea" to="." method="_on_HitboxArea_death"]
 [connection signal="take_damage" from="HitboxArea" to="." method="_on_HitboxArea_take_damage"]
+[connection signal="timeout" from="SlowTimer" to="." method="_on_SlowTimer_timeout"]
+[connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]
+[connection signal="timeout" from="PoisonTimerDamageTicks" to="." method="_on_PoisonTimerDamageTicks_timeout"]

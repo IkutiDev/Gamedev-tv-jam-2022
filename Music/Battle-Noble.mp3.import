@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Battle-Noble.mp3-4395ec8898a7bd3d6a5cbc2e447ac229.mp3str"
+
+[deps]
+
+source_file="res://Music/Battle-Noble.mp3"
+dest_files=[ "res://.import/Battle-Noble.mp3-4395ec8898a7bd3d6a5cbc2e447ac229.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

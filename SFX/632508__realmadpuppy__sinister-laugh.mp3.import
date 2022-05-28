@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/632508__realmadpuppy__sinister-laugh.mp3-b3b9fd5df444a2fc810542881a9b3d00.mp3str"
+
+[deps]
+
+source_file="res://SFX/632508__realmadpuppy__sinister-laugh.mp3"
+dest_files=[ "res://.import/632508__realmadpuppy__sinister-laugh.mp3-b3b9fd5df444a2fc810542881a9b3d00.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

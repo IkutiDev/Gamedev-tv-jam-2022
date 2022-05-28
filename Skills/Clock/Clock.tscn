@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Skills/Clock.gd" type="Script" id=1]
 [ext_resource path="res://Skills/Clock/1_4.png" type="Texture" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Skills/Clock/1_9.png" type="Texture" id=29]
 [ext_resource path="res://Skills/Clock/1_15.png" type="Texture" id=30]
 [ext_resource path="res://Skills/Clock/1_14.png" type="Texture" id=31]
+[ext_resource path="res://SFX/Clock.wav" type="AudioStream" id=32]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -51,7 +52,7 @@ script = ExtResource( 1 )
 position = Vector2( 51, -3 )
 scale = Vector2( 2, 1.5 )
 frames = SubResource( 1 )
-frame = 4
+frame = 7
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite"]
@@ -65,6 +66,10 @@ shape = SubResource( 2 )
 one_shot = true
 
 [node name="ClockTurningTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 32 )
+volume_db = -10.0
 
 [connection signal="area_entered" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_area_exited"]

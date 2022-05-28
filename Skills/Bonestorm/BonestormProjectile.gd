@@ -46,6 +46,8 @@ func Init(enemy):
 
 func SearchForEnemy():
 	randomize()
+	if GameManager.enemySpawner.visibleEnemies.size() == 0:
+		return
 	var index = randi() % GameManager.enemySpawner.visibleEnemies.size()
 	var enemy = GameManager.enemySpawner.visibleEnemies[index]
 	while enemy == currentEnemy:

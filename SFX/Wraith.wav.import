@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Wraith.wav-9236660c23808cfb5164a2025522f956.sample"
+
+[deps]
+
+source_file="res://SFX/Wraith.wav"
+dest_files=[ "res://.import/Wraith.wav-9236660c23808cfb5164a2025522f956.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

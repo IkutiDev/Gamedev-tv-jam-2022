@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/DirtTileset.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://UI/Menus/MenusManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/GUI/GUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CheatMode.gd" type="Script" id=8]
+[ext_resource path="res://Music/8bit-act10_stage05.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Music/Battle-Noble.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Enemies/Militia.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Enemies/Priest.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Enemies/Boss.tscn" type="PackedScene" id=14]
@@ -173,6 +175,15 @@ __meta__ = {
 
 [node name="CheatMode" type="Node2D" parent="."]
 script = ExtResource( 8 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -20.0
+
+[node name="MusicAfterPhase1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -20.0
+autoplay = true
 
 [connection signal="player_has_reborn" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_has_reborn"]
 [connection signal="player_increased_revenge" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_increased_revenge"]

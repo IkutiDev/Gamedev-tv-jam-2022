@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/8bit-act10_stage05.mp3-9cca114d9073235ba1b12f8be6f3f752.mp3str"
+
+[deps]
+
+source_file="res://Music/8bit-act10_stage05.mp3"
+dest_files=[ "res://.import/8bit-act10_stage05.mp3-9cca114d9073235ba1b12f8be6f3f752.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

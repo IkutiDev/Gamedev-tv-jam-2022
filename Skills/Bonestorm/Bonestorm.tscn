@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Skills/Bonestorm/Bonestorm.gd" type="Script" id=1]
 [ext_resource path="res://Skills/Bonestorm/BonestormProjectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SFX/Bone shotgun.wav" type="AudioStream" id=3]
 
 [node name="Bonestorm" type="Node2D"]
 script = ExtResource( 1 )
@@ -9,5 +10,8 @@ boneScene = ExtResource( 2 )
 projectileCount = 15
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

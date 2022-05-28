@@ -31,9 +31,12 @@ export var border_down = -180
 
 var currentRevenge = 0
 
+var _poisonDamage = 0
+
 var maxRevengeForPhase = 100
 
 onready var healthClass = $HitboxArea as Health
+onready var originalMaxSpeed = MaxSpeed
 
 func _enter_tree():
 	GameManager.player = self
@@ -72,10 +75,14 @@ func _bordersCheck():
 func IncreaseRevenge(revenge = 1):
 	currentRevenge+=revenge
 	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
+	if !$CollectAudioPlayer.playing:
+		$CollectAudioPlayer.play()
 	
 
 func _on_HitboxArea_take_damage(maxHealth, currentHealth):
 	emit_signal("player_took_damage",maxHealth, currentHealth)
+	if !$ReceiveDmgAudioPlayer.playing:
+		$ReceiveDmgAudioPlayer.play()
 	$AnimationPlayer.play("Flash")
 
 
@@ -83,6 +90,9 @@ func _on_HitboxArea_death():
 	if currentRevenge < maxRevengeForPhase:
 		print("You lost lol")
 	else:
+		if(phaseIndex >= portraits.size()):
+			print("You lost lol")
+			return
 		Reborn()
 
 func Reborn():
@@ -93,9 +103,37 @@ func Reborn():
 	emit_signal("player_took_damage",maxHealth, $HitboxArea.currentHealth)
 	emit_signal("player_has_reborn", portraits[phaseIndex])
 	$Sprite.texture = sprites[phaseIndex]
-	#pause game and show cool GUI for skills here!
 	phaseIndex += 1
+	if phaseIndex == portraits.size():
+		$RebornGhostAudioPlayer.play()
+	else:
+		$RebornAudioPlayer.play()
+	#pause game and show cool GUI for skills here!
+	
 
+
+func Poison(length, tickTime, poisonDamage):
+	$PoisonAnimationPlayer.play("Poison")
+	$PoisonTimer.start(length)
+	_poisonDamage = poisonDamage
+	$PoisonTimerDamageTicks.start(tickTime)
+	
+func SlowDown(slow):
+	MaxSpeed = MaxSpeed / slow
+	$SlowTimer.start(5)
+
+func _on_SlowTimer_timeout():
+	MaxSpeed = originalMaxSpeed
+
+
+func _on_PoisonTimer_timeout():
+	$PoisonTimerDamageTicks.stop()
+	$PoisonAnimationPlayer.stop(true)
+	
+
+
+func _on_PoisonTimerDamageTicks_timeout():
+	$HitboxArea.TakeDamage(_poisonDamage)
 
 func _on_CheatMode_add_50_revenge():
 	IncreaseRevenge(50)

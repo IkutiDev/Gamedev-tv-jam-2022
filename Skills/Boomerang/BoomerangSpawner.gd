@@ -26,6 +26,8 @@ func _ready():
 func _on_Timer_timeout():
 	var boomerangInstance = boomerangScene.instance() as Boomerang
 	randomize()
+	if enemySpawner.visibleEnemies.size() == 0:
+		return
 	var enemy = enemySpawner.visibleEnemies[randi() % enemySpawner.visibleEnemies.size()] as BaseEnemy
 	boomerangInstance.Init(enemy, player)
 	boomerangInstance.global_position = global_position
