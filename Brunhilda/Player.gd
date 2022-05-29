@@ -13,16 +13,6 @@ const FRICTION = 500
 export var portraits : Array
 export var sprites : Array
 export var maxHealth = 100
-#Skills Scenes
-export var garlicSkillScene : PackedScene
-export var whipSkillScene : PackedScene
-export var hammerSkillScene : PackedScene
-export var bloodBombSkillScene : PackedScene
-export var clockSkillScene : PackedScene
-export var bonerMangSkillScene : PackedScene
-export var bloodTrailSkillScene : PackedScene
-export var bonesSkillScene : PackedScene
-export var tarrotSkillScene : PackedScene
 var phaseIndex = 0
 export var Acceleration = 500.0
 export var MaxSpeed = 120.0

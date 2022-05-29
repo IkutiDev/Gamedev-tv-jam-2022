@@ -11,3 +11,4 @@ skillScene = ExtResource( 3 )
 skillIcon = ExtResource( 2 )
 skillTitle = "Bonermang"
 skillDescription = "Hehe, boner"
+attachAsRemote = false

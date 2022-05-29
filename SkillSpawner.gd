@@ -32,7 +32,16 @@ func _ready():
 func AddSkillToPlayer(skill):
 	var _skill = skill as Skill
 	var skillInstance = _skill.skillScene.instance()
-	GameManager.player.add_child(skillInstance)
+	if _skill.attachAsRemote:
+		var remoteTransform = RemoteTransform2D.new()
+		remoteTransform.update_rotation = false
+		skillInstance.add_to_group("Temp")
+		skillInstance.add_to_group("Boner")
+		get_tree().get_root().add_child(skillInstance)
+		remoteTransform.remote_path = skillInstance.get_path()
+		GameManager.player.add_child(remoteTransform)
+	else:
+		GameManager.player.add_child(skillInstance)
 	skillsTaken.append(skill)
 	emit_signal("skill_has_been_added", _skill.skillIcon)
 	if bloodTrailTaken == false:

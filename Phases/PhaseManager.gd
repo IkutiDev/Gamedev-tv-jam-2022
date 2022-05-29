@@ -7,7 +7,7 @@ export (Array, Resource) var phases
 export var musicNodePath : NodePath
 export var newMusicNodePath : NodePath
 
-var currentPhase
+var currentPhase : Phase
 
 var phaseIndex = 0
 

@@ -72,7 +72,7 @@ func DestroyThisEnemy(killedByPlayer):
 		var GUI = get_tree().get_nodes_in_group("GUI")[0] as GUI
 		GUI.UpdateKillCounter()
 		randomize()
-		if randi() % 10 > 0:
+		if randi() % 10 > 0 and GameManager.phaseManager.currentPhase.spawnRevenge:
 			var revengeOrbInstance = revengeOrb.instance()
 			revengeOrbInstance.global_position = global_position
 			revengeOrbInstance.add_to_group("Temp")

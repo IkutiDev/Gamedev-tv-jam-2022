@@ -11,3 +11,4 @@ skillScene = ExtResource( 2 )
 skillIcon = ExtResource( 3 )
 skillTitle = "Death'o'clock"
 skillDescription = "It's time to die!"
+attachAsRemote = true
