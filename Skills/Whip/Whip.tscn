@@ -20,8 +20,8 @@ animations = [ {
 
 [node name="Whip" type="Node2D"]
 script = ExtResource( 1 )
-whipCooldown = 1.5
-damage = 50
+whipCooldown = 1.2
+damage = 40
 
 [node name="WhipArea2D" type="Area2D" parent="."]
 collision_mask = 2
