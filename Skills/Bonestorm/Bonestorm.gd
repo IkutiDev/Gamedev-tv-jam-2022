@@ -25,7 +25,7 @@ func _on_Timer_timeout():
 	
 func BoneExplosion():
 	$AudioStreamPlayer.play()
-	var duplicateEnemiesArray = GameManager.enemySpawner.visibleEnemies
+	var duplicateEnemiesArray = GameManager.enemySpawner.visibleEnemies.duplicate()
 	for i in projectileCount:
 		randomize()
 		if duplicateEnemiesArray.size() == 0:
