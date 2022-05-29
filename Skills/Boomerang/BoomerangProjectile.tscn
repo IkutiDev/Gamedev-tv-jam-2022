@@ -11,10 +11,12 @@ extents = Vector2( 22.5, 21.5 )
 [node name="BoomerangProjectile" type="Node2D"]
 script = ExtResource( 3 )
 speed = 500.0
+damage = 40
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+rotatorSpeed = 30
 
 [node name="Area2D" type="Area2D" parent="Sprite"]
 collision_mask = 2
