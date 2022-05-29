@@ -1,19 +1,18 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/DirtTileset.png" type="Texture" id=2]
 [ext_resource path="res://World/GrassBackground.png" type="Texture" id=3]
-[ext_resource path="res://Enemies/Townsfolk.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Phases/Phase4/Phase4.tres" type="Resource" id=4]
 [ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=5]
 [ext_resource path="res://UI/Menus/MenusManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/GUI/GUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CheatMode.gd" type="Script" id=8]
 [ext_resource path="res://Music/8bit-act10_stage05.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Music/Battle-Noble.mp3" type="AudioStream" id=10]
-[ext_resource path="res://Enemies/Militia.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Enemies/Priest.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Enemies/Boss.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Enemies/Knight.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Phases/PhaseManager.gd" type="Script" id=11]
+[ext_resource path="res://Phases/Phase2/Phase2.tres" type="Resource" id=13]
+[ext_resource path="res://Phases/Phase3/Phase3.tres" type="Resource" id=14]
 
 [sub_resource type="TileSet" id=2]
 0/name = "DirtTileset.png 0"
@@ -81,62 +80,16 @@ remote_path = NodePath("../../EnemySpawner/SpawnPoints")
 position = Vector2( 340, 160 )
 script = ExtResource( 5 )
 enemiesContainerNodePath = NodePath("../EnemiesContainer")
-townsfolkScene = ExtResource( 4 )
-militiaScene = ExtResource( 12 )
-priestScene = ExtResource( 13 )
-knightScene = ExtResource( 15 )
-BossScene = ExtResource( 14 )
+enemiesSpawnPoints = [ NodePath("SpawnPoints"), NodePath("SpawnPoints2"), NodePath("SpawnPoints3"), NodePath("SpawnPoints4"), NodePath("SpawnPoints5") ]
 
-[node name="TownsFolkTimer" type="Timer" parent="YSort/EnemySpawner"]
-wait_time = 0.5
-autostart = true
-
-[node name="MilitiaTimer" type="Timer" parent="YSort/EnemySpawner"]
-autostart = true
-
-[node name="PriestTimer" type="Timer" parent="YSort/EnemySpawner"]
-wait_time = 1.2
-autostart = true
-
-[node name="KnightTimer" type="Timer" parent="YSort/EnemySpawner"]
-wait_time = 2.0
-autostart = true
+[node name="Timers" type="Node2D" parent="YSort/EnemySpawner"]
+position = Vector2( -340, -160 )
 
 [node name="SpawnPoints" type="Node2D" parent="YSort/EnemySpawner"]
 position = Vector2( -340, -160 )
 
-[node name="Position2D" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( -325, -211 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
-
-[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( -109, -228 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
-
 [node name="Position2D3" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
 position = Vector2( 206, -227 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
-
-[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( 386, -154 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
-
-[node name="Position2D5" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( 384, 68 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
-
-[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( 238, 254 )
 __meta__ = {
 "_gizmo_extents_": 27.9
 }
@@ -147,20 +100,140 @@ __meta__ = {
 "_gizmo_extents_": 27.9
 }
 
-[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( -268, 246 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
-
 [node name="Position2D9" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
 position = Vector2( -410, 116 )
 __meta__ = {
 "_gizmo_extents_": 27.9
 }
 
-[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
+[node name="SpawnPoints2" type="Node2D" parent="YSort/EnemySpawner"]
+position = Vector2( -340, -160 )
+
+[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
+position = Vector2( -109, -228 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
+position = Vector2( 386, -154 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
+position = Vector2( 238, 254 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
+position = Vector2( -268, 246 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
 position = Vector2( -400, -54 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="SpawnPoints3" type="Node2D" parent="YSort/EnemySpawner"]
+position = Vector2( -340, -160 )
+
+[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
+position = Vector2( -312, -236 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
+position = Vector2( 327, -241 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
+position = Vector2( -164, 247 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
+position = Vector2( -377, 222 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
+position = Vector2( -384, -157 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="SpawnPoints4" type="Node2D" parent="YSort/EnemySpawner"]
+position = Vector2( -340, -160 )
+
+[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
+position = Vector2( -203, -226 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
+position = Vector2( 34, -229 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
+position = Vector2( 111, -273 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
+position = Vector2( -40, -261 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
+position = Vector2( -410, -247 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="SpawnPoints5" type="Node2D" parent="YSort/EnemySpawner"]
+position = Vector2( -340, -160 )
+
+[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
+position = Vector2( 261, -262 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
+position = Vector2( -440, 36 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
+position = Vector2( -112, 297 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
+position = Vector2( 365, -63 )
+__meta__ = {
+"_gizmo_extents_": 27.9
+}
+
+[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
+position = Vector2( 361, 49 )
 __meta__ = {
 "_gizmo_extents_": 27.9
 }
@@ -172,6 +245,7 @@ __meta__ = {
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 7 )]
 
 [node name="MenusManager" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
 
 [node name="CheatMode" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -185,12 +259,12 @@ stream = ExtResource( 10 )
 volume_db = -20.0
 autoplay = true
 
+[node name="PhaseManager" type="Node2D" parent="."]
+script = ExtResource( 11 )
+phases = [ ExtResource( 4 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 4 ) ]
+
 [connection signal="player_has_reborn" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_has_reborn"]
 [connection signal="player_increased_revenge" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_increased_revenge"]
 [connection signal="player_took_damage" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_took_damage"]
-[connection signal="timeout" from="YSort/EnemySpawner/TownsFolkTimer" to="YSort/EnemySpawner" method="_on_TownsFolkTimer_timeout"]
-[connection signal="timeout" from="YSort/EnemySpawner/MilitiaTimer" to="YSort/EnemySpawner" method="_on_MilitiaTimer_timeout"]
-[connection signal="timeout" from="YSort/EnemySpawner/PriestTimer" to="YSort/EnemySpawner" method="_on_PriestTimer_timeout"]
-[connection signal="timeout" from="YSort/EnemySpawner/KnightTimer" to="YSort/EnemySpawner" method="_on_KnightTimer_timeout"]
 [connection signal="add_50_revenge" from="CheatMode" to="YSort/Player" method="_on_CheatMode_add_50_revenge"]
 [connection signal="decrease_50_hp" from="CheatMode" to="YSort/Player" method="_on_CheatMode_decrease_50_hp"]

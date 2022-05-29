@@ -42,6 +42,9 @@ func _enter_tree():
 	GameManager.player = self
 
 func _ready():
+	var _currentPhase = GameManager.phaseManager.currentPhase as Phase
+	maxHealth = _currentPhase.playerHealth
+	maxRevengeForPhase = _currentPhase.howMuchRevenge
 	$HitboxArea.Init(maxHealth)
 
 func _physics_process(delta):
@@ -96,8 +99,11 @@ func _on_HitboxArea_death():
 		Reborn()
 
 func Reborn():
+	GameManager.phaseManager.EnterNewPhase()
+	var _currentPhase = GameManager.phaseManager.currentPhase as Phase
+	maxHealth = _currentPhase.playerHealth
 	currentRevenge = 0
-	maxRevengeForPhase = maxRevengeForPhase * 2
+	maxRevengeForPhase = _currentPhase.howMuchRevenge
 	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
 	$HitboxArea.FullyRestoreHealth()
 	emit_signal("player_took_damage",maxHealth, $HitboxArea.currentHealth)
@@ -142,3 +148,4 @@ func _on_CheatMode_add_50_revenge():
 func _on_CheatMode_decrease_50_hp():
 	healthClass.TakeDamage(50)
 	emit_signal("player_took_damage",maxHealth, $HitboxArea.currentHealth)
+

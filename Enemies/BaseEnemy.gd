@@ -68,7 +68,6 @@ func _on_VisibilityNotifier2D_viewport_exited(viewport):
 		$VisibilityNotifier2D/Timer.start()
 
 func DestroyThisEnemy(killedByPlayer):
-	print("Killing enemy "+get_instance_id() as String)
 	if killedByPlayer:
 		var GUI = get_tree().get_nodes_in_group("GUI")[0] as GUI
 		GUI.UpdateKillCounter()

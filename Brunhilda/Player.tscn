@@ -122,8 +122,6 @@ anims/Poison = ExtResource( 19 )
 
 [node name="BoomerangSpawner" parent="." instance=ExtResource( 8 )]
 
-[node name="Bonestorm" parent="." instance=ExtResource( 10 )]
-
 [node name="Blood Bomb Spawner" parent="." instance=ExtResource( 3 )]
 
 [node name="Clock" parent="." instance=ExtResource( 16 )]

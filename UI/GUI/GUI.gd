@@ -20,7 +20,10 @@ func UpdateHealthBar(maxHealth, currentHealth):
 	$HPBarFilling.value = (currentHealth / maxHealth * 100) as int
 
 func UpdateRevengeBar(maxRevenge, currentRevenge):
-	$ExpBarFilling.value = (currentRevenge as float / maxRevenge * 100) as int
+	if maxRevenge == 0:
+		$ExpBarFilling.value = 1
+	else:
+		$ExpBarFilling.value = (currentRevenge as float / maxRevenge * 100) as int
 
 func UpdatePortrait(currentPortait):
 	$CharacterPortrait.texture = currentPortait as Texture
