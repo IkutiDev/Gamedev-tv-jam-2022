@@ -9,5 +9,5 @@ script = ExtResource( 1 )
 skillIndex = 0
 skillScene = ExtResource( 3 )
 skillIcon = ExtResource( 2 )
-skillTitle = "Cursed Hammer"
+skillTitle = "Meat Mallet"
 skillDescription = "Hammer time!"

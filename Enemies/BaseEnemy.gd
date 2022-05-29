@@ -75,6 +75,7 @@ func DestroyThisEnemy(killedByPlayer):
 		if randi() % 10 > 0:
 			var revengeOrbInstance = revengeOrb.instance()
 			revengeOrbInstance.global_position = global_position
+			revengeOrbInstance.add_to_group("Temp")
 			get_tree().get_root().call_deferred("add_child", revengeOrbInstance)
 	_enemySpawner.visibleEnemies.erase(self)
 	queue_free()

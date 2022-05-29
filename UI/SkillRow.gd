@@ -1,5 +1,7 @@
 extends TextureRect
 
+class_name SkillRow
+
 signal SkillSelected(skill)
 
 export var _skill : Resource
@@ -7,6 +9,8 @@ export var _skill2 : Resource
 
 export var Skill1IconPath : NodePath
 export var Skill2IconPath : NodePath
+export var Skill1Button : NodePath
+export var Skill2Button : NodePath
 export var SkillDescriptionLabelPath : NodePath
 export var SkillTitleLabelPath : NodePath
 
@@ -22,6 +26,17 @@ func _ready():
 	var skill2Icon = get_node(Skill2IconPath) as TextureRect
 	skill2Icon.texture = _skill2.skillIcon
 
+
+func DisableSkills(skillsTaken):
+	for item in skillsTaken:
+		if _skill == item:
+			var button = get_node(Skill1Button) as TextureButton
+			button.disabled = true
+			button.modulate = Color(1,1,1,0.1)
+		if _skill2 == item:
+			var button = get_node(Skill2Button) as TextureButton
+			button.disabled = true
+			button.modulate = Color(1,1,1,0.1)
 
 func _on_SkillButton_pressed():
 	emit_signal("SkillSelected", _skill)

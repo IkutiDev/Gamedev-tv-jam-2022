@@ -5,7 +5,7 @@ class_name Player
 signal player_took_damage(maxHealth, currentHealth)
 signal player_increased_revenge(maxRevenge, currentRevenge)
 signal player_has_reborn(portrait)
-signal show_player_skills_GUI(skillsAlreadyTaken)
+signal show_player_skills_GUI(skillRowIndex)
 signal player_lost
 
 #Movement
@@ -36,8 +36,6 @@ var currentRevenge = 0
 var _poisonDamage = 0
 
 var maxRevengeForPhase = 100
-
-var skillsTaken : Array
 
 onready var healthClass = $HitboxArea as Health
 onready var originalMaxSpeed = MaxSpeed
@@ -119,7 +117,7 @@ func Reborn():
 		$RebornGhostAudioPlayer.play()
 	else:
 		$RebornAudioPlayer.play()
-	emit_signal("show_player_skills_GUI", skillsTaken)
+	emit_signal("show_player_skills_GUI",_currentPhase.skillRowIndex)
 	#pause game and show cool GUI for skills here!
 	
 
@@ -158,4 +156,4 @@ func _on_CheatMode_decrease_50_hp():
 
 
 func _on_MenusManager_StartGame():
-	emit_signal("show_player_skills_GUI", skillsTaken)
+	emit_signal("show_player_skills_GUI", GameManager.phaseManager.currentPhase.skillRowIndex)

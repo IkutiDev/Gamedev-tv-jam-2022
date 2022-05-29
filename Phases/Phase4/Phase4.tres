@@ -13,4 +13,4 @@ spawnBoss = true
 howMuchRevenge = 0
 playerHealth = 300
 spawnRevenge = false
-skills = [ null, null, null, null, null, null ]
+skillRowIndex = 3

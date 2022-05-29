@@ -31,4 +31,5 @@ func _on_Timer_timeout():
 	var enemy = enemySpawner.visibleEnemies[randi() % enemySpawner.visibleEnemies.size()] as BaseEnemy
 	boomerangInstance.Init(enemy, player)
 	boomerangInstance.global_position = global_position
+	boomerangInstance.add_to_group("Temp")
 	get_tree().get_root().add_child(boomerangInstance)

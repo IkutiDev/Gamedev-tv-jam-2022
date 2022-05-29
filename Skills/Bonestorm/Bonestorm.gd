@@ -39,4 +39,5 @@ func SpawnBone(enemy):
 	var boneInstance = boneScene.instance() as Bone
 	boneInstance.global_position = global_position
 	boneInstance.Init(enemy)
+	boneInstance.add_to_group("Temp")
 	get_tree().get_root().add_child(boneInstance)

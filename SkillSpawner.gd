@@ -4,6 +4,8 @@ class_name SkillSpawner
 
 signal skill_has_been_added(icon)
 
+var skillsTaken : Array
+
 func _enter_tree():
 	GameManager.skillSpawner = self
 
@@ -16,4 +18,5 @@ func AddSkillToPlayer(skill):
 	var _skill = skill as Skill
 	var skillInstance = _skill.skillScene.instance()
 	GameManager.player.add_child(skillInstance)
+	skillsTaken.append(skill)
 	emit_signal("skill_has_been_added", _skill.skillIcon)

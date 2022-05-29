@@ -4,7 +4,9 @@ extends Control
 # var a = 2
 # var b = "text"
 
-signal StartGame
+signal StartGame()
+signal ShowGUI()
+signal HideGUI()
 
 onready var isPaused = false
 
@@ -36,18 +38,22 @@ func EnablePauseMenu(enable : bool):
 	get_tree().paused = enable
 	if enable:
 		$InfoScreen.show()
+		emit_signal("HideGUI")
 	else:
 		$InfoScreen.hide()
+		emit_signal("ShowGUI")
 
 func ShowWinScreen():
 	gameFinished = true
 	get_tree().paused = true
 	$WinScreen.show()
+	emit_signal("HideGUI")
 
 func ShowLoseScreen():
 	gameFinished = true
 	get_tree().paused = true
 	$LoseScreen.show()
+	emit_signal("HideGUI")
 
 func _on_StoryScreen_NextPanel():
 	$InfoScreen.show()

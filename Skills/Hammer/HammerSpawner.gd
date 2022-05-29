@@ -15,6 +15,7 @@ func _ready():
 func SpawnHammer():
 	var hammerInstance = hammerScene.instance()
 	hammerInstance.global_position = global_position
+	hammerInstance.add_to_group("Temp")
 	get_tree().get_root().add_child(hammerInstance)
 
 

@@ -37,4 +37,5 @@ func _process(delta):
 func SpawnBloodPool():
 	var bloodPoolInstance = bloodPoolScene.instance() as BloodPool
 	bloodPoolInstance.global_position = global_position
+	bloodPoolInstance.add_to_group("Temp")
 	get_tree().get_root().add_child(bloodPoolInstance)

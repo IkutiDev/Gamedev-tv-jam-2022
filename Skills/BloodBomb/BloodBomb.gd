@@ -52,5 +52,6 @@ func _on_Area2D_area_entered(area):
 func SpawnExplosion():
 	var bloodBombExplosionInstance = BloodBombExplosionScene.instance()
 	bloodBombExplosionInstance.global_position = global_position
+	bloodBombExplosionInstance.add_to_group("Temp")
 	get_tree().get_root().call_deferred("add_child", bloodBombExplosionInstance)
 	queue_free()
