@@ -494,12 +494,12 @@ newMusicNodePath = NodePath("../MusicAfterPhase1")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 9 )
-volume_db = -20.0
+volume_db = -40.0
 autoplay = true
 
 [node name="MusicAfterPhase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -20.0
+volume_db = -40.0
 
 [node name="SkillSpawner" type="Node2D" parent="."]
 script = ExtResource( 15 )
