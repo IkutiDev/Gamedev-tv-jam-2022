@@ -20,12 +20,19 @@ var velocity = Vector2.ZERO
 #Borders
 export var border_top = 540
 export var border_down = -180
-
+export var backgroundProps : PackedScene
+export var YSortPath : NodePath
 var currentRevenge = 0
 
 var _poisonDamage = 0
 
 var maxRevengeForPhase = 100
+
+var parallaxDistance
+
+var currentParallaxDistance
+
+var currentVector = Vector2.ZERO
 
 onready var healthClass = $HitboxArea as Health
 onready var originalMaxSpeed = MaxSpeed
@@ -60,6 +67,19 @@ func _movement(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	velocity = move_and_slide(velocity)
+	
+	if global_position.distance_to(Vector2.ZERO) >= currentParallaxDistance-(parallaxDistance/2):
+		currentVector.x = currentParallaxDistance
+		currentParallaxDistance += parallaxDistance
+		var instance = backgroundProps.instance() as YSort
+		instance.global_position = currentVector
+		instance.add_to_group("Temp")
+		get_node(YSortPath).add_child(instance)
+		currentVector.x = -currentParallaxDistance
+		instance = backgroundProps.instance() as YSort
+		instance.global_position = currentVector
+		instance.add_to_group("Temp")
+		get_node(YSortPath).add_child(instance)
 
 func _bordersCheck():
 	if position.y <= border_down:
@@ -147,3 +167,6 @@ func _on_CheatMode_decrease_50_hp():
 
 func _on_MenusManager_StartGame():
 	emit_signal("show_player_skills_GUI", GameManager.phaseManager.currentPhase.skillRowIndex)
+	var parallax = get_node("/root/Game/YSort/ParallaxBackground/ParallaxLayer") as ParallaxLayer
+	parallaxDistance = parallax.motion_mirroring.x
+	currentParallaxDistance = parallaxDistance

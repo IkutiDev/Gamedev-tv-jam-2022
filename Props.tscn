@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://World/krzok_1.png" type="Texture" id=1]
+[ext_resource path="res://World/kamyczki_2.png" type="Texture" id=2]
+[ext_resource path="res://World/kamyczek_1.png" type="Texture" id=3]
+[ext_resource path="res://World/krzok_2.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 11.5 )
+
+[node name="Props" type="YSort"]
+
+[node name="Kamyczki2" type="Sprite" parent="."]
+position = Vector2( 312, -28 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Kamyczki2"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kamyczki2/StaticBody2D"]
+position = Vector2( -3, 10.5 )
+shape = SubResource( 1 )
+
+[node name="Kamyczek4" type="Sprite" parent="."]
+position = Vector2( 154, 367 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Kamyczek4"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kamyczek4/StaticBody2D2"]
+position = Vector2( -3, 13.5 )
+shape = SubResource( 1 )
+
+[node name="Kamyczki4" type="Sprite" parent="."]
+position = Vector2( 598, 198 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Kamyczki4"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kamyczki4/StaticBody2D"]
+position = Vector2( -3, 10.5 )
+shape = SubResource( 1 )
+
+[node name="Kamyczki6" type="Sprite" parent="."]
+position = Vector2( 79, 447 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Kamyczki6"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kamyczki6/StaticBody2D"]
+position = Vector2( -3, 10.5 )
+shape = SubResource( 1 )
+
+[node name="Kamyczek3" type="Sprite" parent="."]
+position = Vector2( 406, 425 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Kamyczek3"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kamyczek3/StaticBody2D3"]
+position = Vector2( -3, 13.5 )
+shape = SubResource( 1 )
+
+[node name="Kamyczki3" type="Sprite" parent="."]
+position = Vector2( 358, 219 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Kamyczki3"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kamyczki3/StaticBody2D3"]
+position = Vector2( -1, 15 )
+shape = SubResource( 1 )
+
+[node name="Krzok1" type="Sprite" parent="."]
+position = Vector2( 573, 454 )
+texture = ExtResource( 1 )
+
+[node name="Krzok3" type="Sprite" parent="."]
+position = Vector2( 86, -98 )
+texture = ExtResource( 1 )
+
+[node name="Krzok6" type="Sprite" parent="."]
+position = Vector2( 590, -114 )
+texture = ExtResource( 4 )
+
+[node name="Krzok2" type="Sprite" parent="."]
+position = Vector2( 217, 495 )
+texture = ExtResource( 4 )
+
+[node name="Kamyczek1" type="Sprite" parent="."]
+position = Vector2( 234, 76 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Kamyczek1"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kamyczek1/StaticBody2D4"]
+position = Vector2( -3, 13.5 )
+shape = SubResource( 1 )
+
+[node name="Krzok4" type="Sprite" parent="."]
+position = Vector2( 63, 243 )
+texture = ExtResource( 1 )
+
+[node name="Krzok5" type="Sprite" parent="."]
+position = Vector2( 358, 118 )
+texture = ExtResource( 4 )
+
+[node name="Krzok7" type="Sprite" parent="."]
+position = Vector2( 439, 19 )
+texture = ExtResource( 1 )
+
+[node name="Krzok8" type="Sprite" parent="."]
+position = Vector2( 537, 317 )
+texture = ExtResource( 4 )
