@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grass.png-3c750e999ad86d55da7ad8a28932a1b3.stex"
+path="res://.import/bleh.png-17fd2ac01e645583eb32c078f3716a92.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/grass.png"
-dest_files=[ "res://.import/grass.png-3c750e999ad86d55da7ad8a28932a1b3.stex" ]
+source_file="res://World/Road/bleh.png"
+dest_files=[ "res://.import/bleh.png-17fd2ac01e645583eb32c078f3716a92.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0
