@@ -47,6 +47,7 @@ func SpawnEffect():
 
 func DamageEffect():
 	$CanvasLayer/TextureRect.texture = damageEffectSprite
+	get_tree().call_group("Boner", "queue_free")
 	for i in GameManager.enemySpawner.visibleEnemies:
 		if GameManager.enemySpawner.visibleEnemies.size() == 0:
 			return

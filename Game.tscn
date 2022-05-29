@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/RoadTileset.tres" type="TileSet" id=2]
@@ -31,6 +31,17 @@
 [ext_resource path="res://World/krzok_2.png" type="Texture" id=29]
 [ext_resource path="res://World/kamyczki_2.png" type="Texture" id=30]
 [ext_resource path="res://World/kamyczek_1.png" type="Texture" id=31]
+[ext_resource path="res://Skills/BloodTrail/BloodTrail.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Skills/Garlic/Garlic.tres" type="Resource" id=33]
+[ext_resource path="res://Spell Effects/BloodEffects/1/1_0.png" type="Texture" id=34]
+[ext_resource path="res://Skills/BloodBomb/BloodBomb.tres" type="Resource" id=35]
+[ext_resource path="res://Skills/Bonestorm/Bonestorm.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Skills/Whip/Whip.tres" type="Resource" id=37]
+[ext_resource path="res://Skills/Boomerang/Bonermang.tres" type="Resource" id=38]
+[ext_resource path="res://Skills/TarrotCards/TarrotCards.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Skills/Hammer/Hammer.tres" type="Resource" id=40]
+[ext_resource path="res://Skills/TarrotCards/back3.png" type="Texture" id=41]
+[ext_resource path="res://Skills/Bonestorm/femur2.png" type="Texture" id=42]
 
 [sub_resource type="TileSet" id=1]
 0/name = "grass_1.png 0"
@@ -504,6 +515,15 @@ volume_db = -40.0
 
 [node name="SkillSpawner" type="Node2D" parent="."]
 script = ExtResource( 15 )
+bloodTrailScene = ExtResource( 32 )
+bloodTrailIcon = ExtResource( 34 )
+bloodTrailSkillsNeeded = [ ExtResource( 35 ), ExtResource( 33 ) ]
+boneShotgunScene = ExtResource( 36 )
+boneShotgunIcon = ExtResource( 42 )
+boneShotgunSkillsNeeded = [ ExtResource( 38 ), ExtResource( 37 ) ]
+tarrotScene = ExtResource( 39 )
+tarrotIcon = ExtResource( 41 )
+tarrotSkillsNeeded = [ ExtResource( 33 ), ExtResource( 40 ), ExtResource( 38 ) ]
 
 [connection signal="player_has_reborn" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_has_reborn"]
 [connection signal="player_increased_revenge" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_increased_revenge"]
