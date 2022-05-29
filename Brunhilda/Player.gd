@@ -6,6 +6,7 @@ signal player_took_damage(maxHealth, currentHealth)
 signal player_increased_revenge(maxRevenge, currentRevenge)
 signal player_has_reborn(portrait)
 signal show_player_skills_GUI(skillsAlreadyTaken)
+signal player_lost
 
 #Movement
 const FRICTION = 500
@@ -49,7 +50,7 @@ func _ready():
 	maxHealth = _currentPhase.playerHealth
 	maxRevengeForPhase = _currentPhase.howMuchRevenge
 	$HitboxArea.Init(maxHealth)
-	emit_signal("show_player_skills_GUI", skillsTaken)
+
 
 func _physics_process(delta):
 	_movement(delta)
@@ -95,10 +96,10 @@ func _on_HitboxArea_take_damage(maxHealth, currentHealth):
 
 func _on_HitboxArea_death():
 	if currentRevenge < maxRevengeForPhase:
-		print("You lost lol")
+		emit_signal("player_lost")
 	else:
 		if(phaseIndex >= portraits.size()):
-			print("You lost lol")
+			emit_signal("player_lost")
 			return
 		Reborn()
 
@@ -154,3 +155,7 @@ func _on_CheatMode_decrease_50_hp():
 	healthClass.TakeDamage(50)
 	emit_signal("player_took_damage",maxHealth, $HitboxArea.currentHealth)
 
+
+
+func _on_MenusManager_StartGame():
+	emit_signal("show_player_skills_GUI", skillsTaken)

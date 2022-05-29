@@ -1,11 +1,11 @@
 extends Node2D
 
+class_name SkillSpawner
+
 signal skill_has_been_added(icon)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+func _enter_tree():
+	GameManager.skillSpawner = self
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -476,11 +476,11 @@ __meta__ = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="MenusManager" parent="CanvasLayer" instance=ExtResource( 6 )]
+
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 7 )]
 visible = false
-
-[node name="MenusManager" parent="CanvasLayer" instance=ExtResource( 6 )]
-visible = false
+mouse_filter = 1
 
 [node name="CheatMode" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -492,6 +492,7 @@ musicNodePath = NodePath("../Music")
 newMusicNodePath = NodePath("../MusicAfterPhase1")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 9 )
 volume_db = -20.0
 autoplay = true
@@ -506,6 +507,9 @@ script = ExtResource( 15 )
 [connection signal="player_has_reborn" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_has_reborn"]
 [connection signal="player_increased_revenge" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_increased_revenge"]
 [connection signal="player_took_damage" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_player_took_damage"]
+[connection signal="show_player_skills_GUI" from="YSort/Player" to="CanvasLayer/GUI" method="_on_Player_show_player_skills_GUI"]
+[connection signal="StartGame" from="CanvasLayer/MenusManager" to="YSort/Player" method="_on_MenusManager_StartGame"]
+[connection signal="StartGame" from="CanvasLayer/MenusManager" to="CanvasLayer/GUI" method="_on_MenusManager_StartGame"]
 [connection signal="add_50_revenge" from="CheatMode" to="YSort/Player" method="_on_CheatMode_add_50_revenge"]
 [connection signal="decrease_50_hp" from="CheatMode" to="YSort/Player" method="_on_CheatMode_decrease_50_hp"]
 [connection signal="skill_has_been_added" from="SkillSpawner" to="CanvasLayer/GUI" method="_on_SkillSpawner_skill_has_been_added"]

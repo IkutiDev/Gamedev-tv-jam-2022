@@ -83,6 +83,11 @@ _global_script_classes=[ {
 "class": "SkillIcon",
 "language": "GDScript",
 "path": "res://UI/GUI/SkillIcon.gd"
+}, {
+"base": "Node2D",
+"class": "SkillSpawner",
+"language": "GDScript",
+"path": "res://SkillSpawner.gd"
 } ]
 _global_script_class_icons={
 "BaseEnemy": "",
@@ -99,7 +104,8 @@ _global_script_class_icons={
 "PhaseManager": "",
 "Player": "",
 "Skill": "",
-"SkillIcon": ""
+"SkillIcon": "",
+"SkillSpawner": ""
 }
 
 [application]

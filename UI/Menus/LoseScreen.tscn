@@ -57,3 +57,5 @@ anchor_bottom = 0.97
 custom_fonts/font = SubResource( 3 )
 action_mode = 0
 text = "Reset"
+
+[connection signal="pressed" from="Panel/NextButton" to="." method="_on_NextButton_pressed"]

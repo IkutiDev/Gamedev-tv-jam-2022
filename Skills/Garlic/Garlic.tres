@@ -9,4 +9,5 @@ script = ExtResource( 1 )
 skillIndex = 0
 skillScene = ExtResource( 2 )
 skillIcon = ExtResource( 3 )
+skillTitle = "Garlic"
 skillDescription = "Trust us, this is garlic!"

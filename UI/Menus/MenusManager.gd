@@ -4,9 +4,13 @@ extends Control
 # var a = 2
 # var b = "text"
 
-onready var isPaused = get_tree().paused
+signal StartGame
+
+onready var isPaused = false
 
 var gameFinished = false
+
+var gameStarted = false
 
 func _enter_tree():
 	pause_mode = Node.PAUSE_MODE_PROCESS
@@ -51,3 +55,10 @@ func _on_StoryScreen_NextPanel():
 
 func _on_InfoScreen_ExitPanel():
 	EnablePauseMenu(false)
+	if gameStarted == false:
+		gameStarted = true
+		emit_signal("StartGame")
+
+
+func _on_Player_player_lost():
+	ShowLoseScreen()
