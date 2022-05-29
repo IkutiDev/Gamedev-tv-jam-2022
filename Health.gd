@@ -13,7 +13,8 @@ func Init(maxHealth):
 	_maxHealth = maxHealth
 	currentHealth = _maxHealth
 
-func FullyRestoreHealth():
+func FullyRestoreHealth(maxHealth):
+	_maxHealth = maxHealth
 	currentHealth = _maxHealth
 
 func TakeDamage(damage):

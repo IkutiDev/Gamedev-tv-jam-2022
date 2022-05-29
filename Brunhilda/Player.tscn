@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Brunhilda/brunhilda_base.png" type="Texture" id=1]
 [ext_resource path="res://Brunhilda/Player.gd" type="Script" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://SFX/Receive dmg.wav" type="AudioStream" id=20]
 [ext_resource path="res://SFX/Morph.wav" type="AudioStream" id=21]
 [ext_resource path="res://SFX/Wraith.wav" type="AudioStream" id=22]
-[ext_resource path="res://Skills/TarrotCards/TarrotCards.tscn" type="PackedScene" id=23]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -119,22 +118,6 @@ anims/Poison = ExtResource( 19 )
 [node name="PoisonTimer" type="Timer" parent="."]
 
 [node name="PoisonTimerDamageTicks" type="Timer" parent="."]
-
-[node name="BoomerangSpawner" parent="." instance=ExtResource( 8 )]
-
-[node name="Blood Bomb Spawner" parent="." instance=ExtResource( 3 )]
-
-[node name="Clock" parent="." instance=ExtResource( 16 )]
-
-[node name="BloodTrail" parent="." instance=ExtResource( 9 )]
-
-[node name="Garlic" parent="." instance=ExtResource( 17 )]
-
-[node name="HammerSpawner" parent="." instance=ExtResource( 7 )]
-
-[node name="Whip" parent="." instance=ExtResource( 6 )]
-
-[node name="TarrotCards" parent="." instance=ExtResource( 23 )]
 
 [node name="CollectAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )

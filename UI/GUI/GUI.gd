@@ -3,9 +3,9 @@ extends Control
 class_name GUI
 
 var killCounter = 0
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+export (Array, NodePath) var skillIcons
+var skillIconIndex = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +21,7 @@ func UpdateHealthBar(maxHealth, currentHealth):
 
 func UpdateRevengeBar(maxRevenge, currentRevenge):
 	if maxRevenge == 0:
-		$ExpBarFilling.value = 1
+		$ExpBarFilling.value = 100
 	else:
 		$ExpBarFilling.value = (currentRevenge as float / maxRevenge * 100) as int
 
@@ -39,3 +39,9 @@ func _on_Player_player_increased_revenge(maxRevenge, currentRevenge):
 
 func _on_Player_player_has_reborn(portrait):
 	UpdatePortrait(portrait)
+
+
+func _on_SkillSpawner_skill_has_been_added(icon):
+	var skillIcon = skillIcons[skillIconIndex] as SkillIcon
+	skillIcon.ShowIcon(icon)
+	skillIconIndex += 1

@@ -73,6 +73,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Brunhilda/Player.gd"
+}, {
+"base": "Resource",
+"class": "Skill",
+"language": "GDScript",
+"path": "res://Skills/Skill.gd"
+}, {
+"base": "TextureRect",
+"class": "SkillIcon",
+"language": "GDScript",
+"path": "res://UI/GUI/SkillIcon.gd"
 } ]
 _global_script_class_icons={
 "BaseEnemy": "",
@@ -87,7 +97,9 @@ _global_script_class_icons={
 "Health": "",
 "Phase": "",
 "PhaseManager": "",
-"Player": ""
+"Player": "",
+"Skill": "",
+"SkillIcon": ""
 }
 
 [application]

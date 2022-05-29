@@ -13,3 +13,4 @@ spawnBoss = false
 howMuchRevenge = 100
 playerHealth = 100
 spawnRevenge = true
+skills = [ null, null ]

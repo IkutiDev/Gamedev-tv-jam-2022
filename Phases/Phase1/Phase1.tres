@@ -1,15 +1,18 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://Phases/Phase.gd" type="Script" id=1]
 [ext_resource path="res://Phases/Phase1/TownsFolkP1.tres" type="Resource" id=2]
 [ext_resource path="res://Phases/Phase1/PriestP1.tres" type="Resource" id=3]
 [ext_resource path="res://Phases/Phase1/KnightP1.tres" type="Resource" id=4]
 [ext_resource path="res://Phases/Phase1/MilitiaP1.tres" type="Resource" id=5]
+[ext_resource path="res://Skills/Garlic/Garlic.tres" type="Resource" id=6]
+[ext_resource path="res://Skills/Whip/Whip.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
 enemiesSpawnRoutine = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ]
 spawnBoss = false
-howMuchRevenge = 10
-playerHealth = 10
+howMuchRevenge = 25
+playerHealth = 50
 spawnRevenge = true
+skills = [ ExtResource( 6 ), ExtResource( 7 ) ]

@@ -5,6 +5,7 @@ class_name Player
 signal player_took_damage(maxHealth, currentHealth)
 signal player_increased_revenge(maxRevenge, currentRevenge)
 signal player_has_reborn(portrait)
+signal show_player_skills_GUI(skillsAlreadyTaken)
 
 #Movement
 const FRICTION = 500
@@ -35,6 +36,8 @@ var _poisonDamage = 0
 
 var maxRevengeForPhase = 100
 
+var skillsTaken : Array
+
 onready var healthClass = $HitboxArea as Health
 onready var originalMaxSpeed = MaxSpeed
 
@@ -46,6 +49,7 @@ func _ready():
 	maxHealth = _currentPhase.playerHealth
 	maxRevengeForPhase = _currentPhase.howMuchRevenge
 	$HitboxArea.Init(maxHealth)
+	emit_signal("show_player_skills_GUI", skillsTaken)
 
 func _physics_process(delta):
 	_movement(delta)
@@ -105,7 +109,7 @@ func Reborn():
 	currentRevenge = 0
 	maxRevengeForPhase = _currentPhase.howMuchRevenge
 	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
-	$HitboxArea.FullyRestoreHealth()
+	$HitboxArea.FullyRestoreHealth(maxHealth)
 	emit_signal("player_took_damage",maxHealth, $HitboxArea.currentHealth)
 	emit_signal("player_has_reborn", portraits[phaseIndex])
 	$Sprite.texture = sprites[phaseIndex]
@@ -114,6 +118,7 @@ func Reborn():
 		$RebornGhostAudioPlayer.play()
 	else:
 		$RebornAudioPlayer.play()
+	emit_signal("show_player_skills_GUI", skillsTaken)
 	#pause game and show cool GUI for skills here!
 	
 

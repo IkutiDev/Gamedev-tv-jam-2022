@@ -10,6 +10,7 @@
 script = ExtResource( 1 )
 enemiesSpawnRoutine = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 spawnBoss = false
-howMuchRevenge = 100
-playerHealth = 100
+howMuchRevenge = 200
+playerHealth = 200
 spawnRevenge = true
+skills = [ null, null ]

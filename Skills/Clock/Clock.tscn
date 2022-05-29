@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=2]
 
-[ext_resource path="res://Skills/Clock.gd" type="Script" id=1]
+[ext_resource path="res://Skills/Clock/Clock.gd" type="Script" id=1]
 [ext_resource path="res://Skills/Clock/1_4.png" type="Texture" id=2]
 [ext_resource path="res://Skills/Clock/1_0.png" type="Texture" id=3]
 [ext_resource path="res://Skills/Clock/1_1.png" type="Texture" id=4]
