@@ -6,7 +6,7 @@
 [node name="BoomerangSpawner" type="Node2D"]
 script = ExtResource( 1 )
 boomerangScene = ExtResource( 2 )
-cooldown = 2.5
+cooldown = 1.5
 
 [node name="Timer" type="Timer" parent="."]
 

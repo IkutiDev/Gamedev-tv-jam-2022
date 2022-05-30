@@ -41,12 +41,12 @@ valign = 1
 [node name="Description" type="Label" parent="Panel/VBoxContainer"]
 margin_top = 81.0
 margin_right = 640.0
-margin_bottom = 318.0
+margin_bottom = 138.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam odio arcu, elementum nec nisi in, laoreet varius erat. Aliquam sit amet faucibus lorem, vitae consectetur ante. Nam sodales dapibus arcu non interdum. Praesent efficitur dui vitae quam blandit porttitor. Sed et malesuada dolor. Duis posuere elit vitae porta rhoncus. Phasellus viverra ante non nisi tempor, sed consectetur tellus dapibus. Nullam in egestas tellus. Duis maximus dapibus aliquam. Maecenas nec aliquam ante.
-
-Ut nec diam vel massa cursus imperdiet. Donec commodo aliquam porta. In hac habitasse platea dictumst. Nulla et quam nec ipsum malesuada auctor. "
+text = "Use arrows to move around
+Pick up shiny rocks
+Get revenge on peasants"
 align = 1
 valign = 1
 autowrap = true

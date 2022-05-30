@@ -7,6 +7,7 @@
 [node name="Bonestorm" type="Node2D"]
 script = ExtResource( 1 )
 boneScene = ExtResource( 2 )
+projectileCount = 10
 
 [node name="Timer" type="Timer" parent="."]
 

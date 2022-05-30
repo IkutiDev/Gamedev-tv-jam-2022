@@ -322,10 +322,13 @@ radius = 35.5106
 [node name="BloodBombExplosion" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
+length = 5.0
+speed = 0.4
+damage = 25
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
 frames = SubResource( 64 )
-frame = 58
+frame = 27
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2"]

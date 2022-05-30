@@ -26,6 +26,7 @@ speed = 200
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 2
 playing = true
 script = ExtResource( 6 )
 

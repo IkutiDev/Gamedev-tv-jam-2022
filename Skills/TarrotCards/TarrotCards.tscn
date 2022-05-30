@@ -28,7 +28,7 @@ damageEffectSprite = ExtResource( 1 )
 poisonEffectSprite = ExtResource( 3 )
 slowEffectSprite = ExtResource( 2 )
 poisonDamage = 7
-poisonLength = 5
+poisonTickRate = 0.7
 badLuckChanceInPercenatage = 10.0
 badLuckDamage = 40
 
