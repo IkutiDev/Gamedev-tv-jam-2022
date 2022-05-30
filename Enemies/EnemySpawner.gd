@@ -3,10 +3,8 @@ extends Node2D
 class_name EnemySpawner
 
 export var enemiesContainerNodePath : NodePath
-export (Array, NodePath) var enemiesSpawnPoints
 
 var visibleEnemies : Array
-var currentSpawnPointsIndex = 0
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -16,11 +14,22 @@ func _enter_tree():
 
 func SpawnEnemy(enemyScene):
 	randomize()
-	var spawnPoints = enemiesSpawnPoints[currentSpawnPointsIndex]
-	var children = get_node(spawnPoints).get_children()
-	var position = children[randi() % children.size()].global_position
+	var children = $SpawnPoints.get_children()
+	var index = randi() % children.size()
+	var startIndex = index
+	var spawnPoint = children[index] as SpawnPosition
+	if spawnPoint.isBusy:
+		while(spawnPoint.isBusy):
+			index +=1
+			if index == startIndex:
+				return
+			if index >= children.size():
+				index = 0
+			spawnPoint = children[index] as SpawnPosition
+	spawnPoint.Spawn()
+	print(spawnPoint)
 	var enemyInstance = enemyScene.instance()
-	enemyInstance.global_position = position
+	enemyInstance.global_position = spawnPoint.global_position
 	get_node(enemiesContainerNodePath).add_child(enemyInstance)
 	enemyInstance.Init(self)
 	

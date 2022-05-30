@@ -9,6 +9,7 @@ extra_spacing_top = 29
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 15
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -43,12 +44,10 @@ valign = 1
 [node name="Description" type="Label" parent="Panel/VBoxContainer"]
 margin_top = 81.0
 margin_right = 640.0
-margin_bottom = 318.0
+margin_bottom = 325.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam odio arcu, elementum nec nisi in, laoreet varius erat. Aliquam sit amet faucibus lorem, vitae consectetur ante. Nam sodales dapibus arcu non interdum. Praesent efficitur dui vitae quam blandit porttitor. Sed et malesuada dolor. Duis posuere elit vitae porta rhoncus. Phasellus viverra ante non nisi tempor, sed consectetur tellus dapibus. Nullam in egestas tellus. Duis maximus dapibus aliquam. Maecenas nec aliquam ante.
-
-Ut nec diam vel massa cursus imperdiet. Donec commodo aliquam porta. In hac habitasse platea dictumst. Nulla et quam nec ipsum malesuada auctor. "
+text = "You, Brunhilda, were the only child of recently passed away king. Therefore your were about to become the new ruler - a new sun shining over the kingdom. However the fate, or rather your uncle, decided that the sun will never rise. It was the day of the coronation - your breakfast was poisoned and soon your young, beautiful body was hidden deep in the coldness of the crypt. But instead of, how they say, rest in peace, you woke up in the darkness with only one feeling, deeper  and stronger than anything you felt through your whole life - the urge of revenge. And with that revenge sparkling brightly in your dead eyes you left the crypt to collect the heads of those who buried your dreams. You want to reach the castle and decapitate the greatest traitor - your uncle, the high priest Theodor."
 align = 1
 valign = 1
 autowrap = true

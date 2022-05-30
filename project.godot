@@ -93,6 +93,11 @@ _global_script_classes=[ {
 "class": "SkillSpawner",
 "language": "GDScript",
 "path": "res://SkillSpawner.gd"
+}, {
+"base": "Position2D",
+"class": "SpawnPosition",
+"language": "GDScript",
+"path": "res://SpawnPoint.gd"
 } ]
 _global_script_class_icons={
 "BaseEnemy": "",
@@ -111,7 +116,8 @@ _global_script_class_icons={
 "Skill": "",
 "SkillIcon": "",
 "SkillRow": "",
-"SkillSpawner": ""
+"SkillSpawner": "",
+"SpawnPosition": ""
 }
 
 [application]

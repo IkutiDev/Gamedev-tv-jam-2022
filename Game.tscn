@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/RoadTileset.tres" type="TileSet" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://World/Grass/grass_1.png" type="Texture" id=25]
 [ext_resource path="res://World/Grass/grass_2.png" type="Texture" id=26]
 [ext_resource path="res://World/Grass/grass_3.png" type="Texture" id=27]
+[ext_resource path="res://SpawnPoint.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Skills/BloodTrail/BloodTrail.tscn" type="PackedScene" id=32]
 [ext_resource path="res://Skills/Garlic/Garlic.tres" type="Resource" id=33]
 [ext_resource path="res://Spell Effects/BloodEffects/1/1_0.png" type="Texture" id=34]
@@ -268,7 +269,6 @@ tile_data = PoolIntArray( -720896, 2, 0, -720895, 11, 0, -720894, 0, 0, -720893,
 position = Vector2( 340, 160 )
 script = ExtResource( 5 )
 enemiesContainerNodePath = NodePath("../EnemiesContainer")
-enemiesSpawnPoints = [ NodePath("SpawnPoints"), NodePath("SpawnPoints2"), NodePath("SpawnPoints3"), NodePath("SpawnPoints4"), NodePath("SpawnPoints5") ]
 
 [node name="Timers" type="Node2D" parent="YSort/EnemySpawner"]
 position = Vector2( -340, -160 )
@@ -276,155 +276,205 @@ position = Vector2( -340, -160 )
 [node name="SpawnPoints" type="Node2D" parent="YSort/EnemySpawner"]
 position = Vector2( 277, 50 )
 
-[node name="Position2D3" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( 206, -227 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
 
-[node name="Position2D7" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( -37, 250 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint2" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 98, -227 )
 
-[node name="Position2D9" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints"]
-position = Vector2( -410, 116 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint3" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -61, -235 )
 
-[node name="SpawnPoints2" type="Node2D" parent="YSort/EnemySpawner"]
-position = Vector2( -340, -160 )
+[node name="SpawnPoint4" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -184, -247 )
 
-[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
-position = Vector2( -109, -228 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint5" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -120, -303 )
 
-[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
-position = Vector2( 386, -154 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint6" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -269, -303 )
 
-[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
-position = Vector2( 238, 254 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint7" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -411, -230 )
 
-[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
-position = Vector2( -268, 246 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint8" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -469, -70 )
 
-[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints2"]
-position = Vector2( -400, -54 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint9" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -408, 39 )
 
-[node name="SpawnPoints3" type="Node2D" parent="YSort/EnemySpawner"]
-position = Vector2( -340, -160 )
+[node name="SpawnPoint10" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -370, 142 )
 
-[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
-position = Vector2( -312, -236 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint11" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -309, 211 )
 
-[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
-position = Vector2( 327, -241 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint12" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -138, 242 )
 
-[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
-position = Vector2( -164, 247 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint13" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 52, 243 )
 
-[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
-position = Vector2( -377, 222 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint14" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 177, 217 )
 
-[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints3"]
-position = Vector2( -384, -157 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint15" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 287, 227 )
 
-[node name="SpawnPoints4" type="Node2D" parent="YSort/EnemySpawner"]
-position = Vector2( -340, -160 )
+[node name="SpawnPoint16" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 412, 157 )
 
-[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
-position = Vector2( -203, -226 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint17" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 378, 63 )
 
-[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
-position = Vector2( 34, -229 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint18" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 370, -30 )
 
-[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
-position = Vector2( 111, -273 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint19" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 354, -135 )
 
-[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
-position = Vector2( -40, -261 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint20" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 341, -206 )
 
-[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints4"]
-position = Vector2( -410, -247 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint21" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 290, -268 )
 
-[node name="SpawnPoints5" type="Node2D" parent="YSort/EnemySpawner"]
-position = Vector2( -340, -160 )
+[node name="SpawnPoint22" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 135, -302 )
 
-[node name="Position2D2" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
-position = Vector2( 261, -262 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint23" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 38, -308 )
 
-[node name="Position2D4" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
-position = Vector2( -440, 36 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint24" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 131, 276 )
 
-[node name="Position2D6" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
-position = Vector2( -112, 297 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint25" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 2, 283 )
 
-[node name="Position2D8" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
-position = Vector2( 365, -63 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint26" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -261, 277 )
 
-[node name="Position2D10" type="Position2D" parent="YSort/EnemySpawner/SpawnPoints5"]
-position = Vector2( 361, 49 )
-__meta__ = {
-"_gizmo_extents_": 27.9
-}
+[node name="SpawnPoint27" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 457, 83 )
+
+[node name="SpawnPoint28" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 470, -57 )
+
+[node name="SpawnPoint29" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -381, -34 )
+
+[node name="SpawnPoint30" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 438, -136 )
+
+[node name="SpawnPoint31" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -458, -182 )
+
+[node name="SpawnPoint32" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -489, 82 )
+
+[node name="SpawnPoint33" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -413, 223 )
+
+[node name="SpawnPoint34" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -589, 187 )
+
+[node name="SpawnPoint35" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -593, -71 )
+
+[node name="SpawnPoint36" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -606, -270 )
+
+[node name="SpawnPoint37" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -410, -350 )
+
+[node name="SpawnPoint38" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -183, -394 )
+
+[node name="SpawnPoint39" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 106, -398 )
+
+[node name="SpawnPoint40" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 253, -354 )
+
+[node name="SpawnPoint41" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 393, -319 )
+
+[node name="SpawnPoint42" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 559, 17 )
+
+[node name="SpawnPoint43" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 419, 215 )
+
+[node name="SpawnPoint44" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 278, 317 )
+
+[node name="SpawnPoint45" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 92, 383 )
+
+[node name="SpawnPoint46" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -42, 385 )
+
+[node name="SpawnPoint47" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -197, 347 )
+
+[node name="SpawnPoint48" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -404, 363 )
+
+[node name="SpawnPoint49" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -499, 292 )
+
+[node name="SpawnPoint50" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -622, 95 )
+
+[node name="SpawnPoint51" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -669, -14 )
+
+[node name="SpawnPoint52" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -671, -133 )
+
+[node name="SpawnPoint53" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -695, -294 )
+
+[node name="SpawnPoint54" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -578, -392 )
+
+[node name="SpawnPoint55" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -353, -442 )
+
+[node name="SpawnPoint56" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -16, -440 )
+
+[node name="SpawnPoint57" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 227, -446 )
+
+[node name="SpawnPoint58" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 413, -405 )
+
+[node name="SpawnPoint59" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 462, -264 )
+
+[node name="SpawnPoint60" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 547, -155 )
+
+[node name="SpawnPoint61" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 568, 134 )
+
+[node name="SpawnPoint62" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 491, 250 )
+
+[node name="SpawnPoint63" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 388, 363 )
+
+[node name="SpawnPoint64" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 243, 403 )
+
+[node name="SpawnPoint65" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -295, 366 )
+
+[node name="SpawnPoint66" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( -561, -135 )
+
+[node name="SpawnPoint67" parent="YSort/EnemySpawner/SpawnPoints" instance=ExtResource( 28 )]
+position = Vector2( 558, -79 )
 
 [node name="EnemiesContainer" type="YSort" parent="YSort"]
 

@@ -67,7 +67,16 @@ func _movement(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	velocity = move_and_slide(velocity)
-	
+	_spawnProps()
+
+
+func _bordersCheck():
+	if position.y <= border_down:
+		position.y = border_down
+	if position.y >= border_top:
+		position.y = border_top
+		
+func _spawnProps():
 	if global_position.distance_to(Vector2.ZERO) >= currentParallaxDistance-(parallaxDistance/2):
 		currentVector.x = currentParallaxDistance
 		currentParallaxDistance += parallaxDistance
@@ -80,12 +89,6 @@ func _movement(delta):
 		instance.global_position = currentVector
 		instance.add_to_group("Temp")
 		get_node(YSortPath).add_child(instance)
-
-func _bordersCheck():
-	if position.y <= border_down:
-		position.y = border_down
-	if position.y >= border_top:
-		position.y = border_top
 		
 
 func IncreaseRevenge(revenge = 1):
