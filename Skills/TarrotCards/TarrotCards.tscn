@@ -27,10 +27,12 @@ script = ExtResource( 4 )
 damageEffectSprite = ExtResource( 1 )
 poisonEffectSprite = ExtResource( 3 )
 slowEffectSprite = ExtResource( 2 )
-poisonDamage = 7
-poisonTickRate = 0.7
-badLuckChanceInPercenatage = 10.0
-badLuckDamage = 40
+minCooldown = 10.0
+maxCooldown = 20.0
+poisonDamage = 10
+poisonTickRate = 1.0
+badLuckChanceInPercenatage = 15.0
+badLuckDamage = 25
 
 [node name="Image" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )

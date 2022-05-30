@@ -98,7 +98,7 @@ cowardMovement = true
 cowardMovementMaxDistance = 100
 enemyDamage = 1.2
 enemyDamageSpeed = 0.5
-maxHealth = 5000.0
+maxHealth = 7500.0
 isBoss = true
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -93,7 +93,10 @@ func _spawnProps():
 
 func IncreaseRevenge(revenge = 1):
 	currentRevenge+=revenge
+	currentRevenge = min(currentRevenge, maxRevengeForPhase)
 	emit_signal("player_increased_revenge", maxRevengeForPhase, currentRevenge)
+	if maxRevengeForPhase == currentRevenge and GameManager.phaseManager.currentPhase.spawnRevenge:
+		$HitboxArea.TakeDamage(2)
 	if !$CollectAudioPlayer.playing:
 		$CollectAudioPlayer.play()
 	

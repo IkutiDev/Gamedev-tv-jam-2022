@@ -18,7 +18,8 @@ export var enemyDamageSpeed = 0.2
 export var maxHealth = 100.0
 
 export var isBoss = false
-export var AuraCooldown = 5.0
+export var AuraDuration = 5.0
+export var AuraCooldown = 10.0
 
 var velocity = Vector2.ZERO
 
@@ -155,7 +156,7 @@ func EnableAura():
 func _on_AuraStartTimer_timeout():
 	$RetributionAura.set_process(true)
 	$RetributionAura.show()
-	$AuraEndTimer.start(AuraCooldown)
+	$AuraEndTimer.start(AuraDuration)
 
 func _on_AuraEndTimer_timeout():
 	$RetributionAura.set_process(false)
