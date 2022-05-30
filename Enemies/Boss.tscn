@@ -14,7 +14,7 @@ radius = 5.0
 height = 32.0
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 14.0
+radius = 37.5
 height = 32.0
 
 [sub_resource type="Animation" id=2]
@@ -84,7 +84,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 11.0
+radius = 25.5
 height = 32.0
 
 [node name="Boss" type="KinematicBody2D"]
@@ -140,7 +140,8 @@ anims/Poison = SubResource( 7 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 2, 1 )
+visible = false
+position = Vector2( -1.5, 1.5 )
 shape = SubResource( 3 )
 
 [node name="SlowTimer" type="Timer" parent="."]
