@@ -40,18 +40,16 @@ func SpawnEffect():
 	
 	if number == 0:
 		DamageEffect()
+		pass
 	elif number == 1:
-		PoisonEffect()
+		DamageEffect()
 	else:
-		SlowEffect()
+		DamageEffect()
 
 func DamageEffect():
 	$CanvasLayer/TextureRect.texture = damageEffectSprite
 	get_tree().call_group("Boner", "queue_free")
 	for i in GameManager.enemySpawner.visibleEnemies:
-		if GameManager.enemySpawner.visibleEnemies.size() == 0:
-			return
-		GameManager.enemySpawner.visibleEnemies.push_front(i)
 		var enemy = i as BaseEnemy
 		enemy.DestroyThisEnemy(true, true)
 

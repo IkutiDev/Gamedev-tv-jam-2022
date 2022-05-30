@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/RoadTileset.tres" type="TileSet" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Enemies/EnemySpawner.gd" type="Script" id=5]
 [ext_resource path="res://UI/Menus/MenusManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/GUI/GUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://CheatMode.gd" type="Script" id=8]
 [ext_resource path="res://Music/8bit-act10_stage05.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Music/Battle-Noble.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Phases/PhaseManager.gd" type="Script" id=11]
@@ -492,9 +491,6 @@ position = Vector2( 558, -79 )
 visible = false
 mouse_filter = 1
 
-[node name="CheatMode" type="Node2D" parent="."]
-script = ExtResource( 8 )
-
 [node name="PhaseManager" type="Node2D" parent="."]
 script = ExtResource( 11 )
 phases = [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 4 ) ]
@@ -533,6 +529,4 @@ tarrotSkillsNeeded = [ ExtResource( 33 ), ExtResource( 40 ), ExtResource( 38 ) ]
 [connection signal="HideGUI" from="CanvasLayer/MenusManager" to="CanvasLayer/GUI" method="_on_MenusManager_HideGUI"]
 [connection signal="ShowGUI" from="CanvasLayer/MenusManager" to="CanvasLayer/GUI" method="_on_MenusManager_ShowGUI"]
 [connection signal="StartGame" from="CanvasLayer/MenusManager" to="YSort/Player" method="_on_MenusManager_StartGame"]
-[connection signal="add_50_revenge" from="CheatMode" to="YSort/Player" method="_on_CheatMode_add_50_revenge"]
-[connection signal="decrease_50_hp" from="CheatMode" to="YSort/Player" method="_on_CheatMode_decrease_50_hp"]
 [connection signal="skill_has_been_added" from="SkillSpawner" to="CanvasLayer/GUI" method="_on_SkillSpawner_skill_has_been_added"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Rotator.gd" type="Script" id=1]
 [ext_resource path="res://Spell Effects/Orbs/1/1.png" type="Texture" id=2]
@@ -61,6 +61,7 @@
 [ext_resource path="res://Spell Effects/Orbs/1/23.png" type="Texture" id=59]
 [ext_resource path="res://Spell Effects/Orbs/1/17.png" type="Texture" id=60]
 [ext_resource path="res://Spell Effects/Orbs/1/5.png" type="Texture" id=61]
+[ext_resource path="res://Health.gd" type="Script" id=62]
 [ext_resource path="res://Enemies/EnemyProjectile.gd" type="Script" id=65]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -74,14 +75,63 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=2]
 radius = 13.0
 
+[sub_resource type="CircleShape2D" id=4]
+radius = 13.0
+
+[sub_resource type="Animation" id=5]
+resource_name = "Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 0.5, 0.5, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Poison"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.145098, 0.478431, 0.145098, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="EnemyProjectile" type="Node2D"]
 script = ExtResource( 65 )
 speed = 250
 damage = 5.0
+health = 30
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
-frame = 38
+frame = 19
 playing = true
 script = ExtResource( 1 )
 
@@ -89,11 +139,26 @@ script = ExtResource( 1 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite/Area2D"]
+visible = false
 shape = SubResource( 2 )
+
+[node name="HitboxArea" type="Area2D" parent="AnimatedSprite"]
+collision_layer = 2
+script = ExtResource( 62 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatedSprite/HitboxArea"]
+visible = false
+shape = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 5 )
+anims/Poison = SubResource( 6 )
+
 [connection signal="area_entered" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="death" from="AnimatedSprite/HitboxArea" to="." method="_on_HitboxArea_death"]
+[connection signal="take_damage" from="AnimatedSprite/HitboxArea" to="." method="_on_HitboxArea_take_damage"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

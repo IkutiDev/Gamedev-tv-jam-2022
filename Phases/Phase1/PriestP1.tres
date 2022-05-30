@@ -7,4 +7,4 @@
 script = ExtResource( 1 )
 enemyScene = ExtResource( 2 )
 spawnerCounter = 0
-spawnRate = 0.5
+spawnRate = 2.0

@@ -80,13 +80,12 @@ collision_mask = 1
 
 [node name="AnimatedSprite" parent="." index="1"]
 visible = false
-modulate = Color( 1, 1, 1, 0.235294 )
 frame = 0
 playing = false
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="." index="2"]
 modulate = Color( 1, 1, 1, 0.235294 )
 frames = SubResource( 16 )
-frame = 4
+frame = 7
 speed_scale = 3.0
 playing = true

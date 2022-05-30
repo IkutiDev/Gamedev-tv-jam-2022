@@ -128,6 +128,8 @@ func SlowDown(slow):
 
 
 func _on_HitboxArea_take_damage(maxHealth, currentHealth):
+	if isBoss:
+		print(currentHealth)
 	$AnimationPlayer.play("Flash")
 
 

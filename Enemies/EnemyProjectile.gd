@@ -2,42 +2,27 @@ extends Node2D
 
 export var speed = 5
 export var damage = 0.5
+export var health = 20
 
 var entityHealth : Health
 
 var playerPosition = Vector2.ZERO
-
+var velocity = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerPosition = GameManager.player.global_position
+	var target_pos = playerPosition
+	self.rotation = target_pos.angle()
+	velocity = self.global_position.direction_to(target_pos)
 	$Timer.start(15)
+	$AnimatedSprite/HitboxArea.Init(health)
 
 
-func _process(delta):
-	var direction_vector = Vector2.ZERO
-	direction_vector = global_position.direction_to(playerPosition).normalized()
-	
-	
-	if direction_vector.x > 0:
-		scale.x = scale.y * 1
-	if direction_vector.x < 0:
-		scale.x = scale.y * -1
-
-	look_at(transform.origin + direction_vector)
-
-	global_position = global_position.move_toward(playerPosition, delta * speed)
-	
-	if global_position == playerPosition:
-		if direction_vector.x > 0:
-			playerPosition += Vector2.RIGHT
-		if direction_vector.x < 0:
-			playerPosition += Vector2.LEFT
-		if direction_vector.y > 0:
-			playerPosition += Vector2.DOWN
-		if direction_vector.y < 0:
-			playerPosition += Vector2.UP
+func _physics_process(delta):
+	self.global_position += velocity * speed * delta
 
 func _dealDamage(entity):
+	print(name)
 	entityHealth = entity
 	entityHealth.TakeDamage(damage)
 
@@ -52,3 +37,11 @@ func _on_Area2D_area_entered(area):
 
 func _on_Timer_timeout():
 	queue_free()
+
+
+func _on_HitboxArea_death():
+	queue_free()
+
+
+func _on_HitboxArea_take_damage(maxHealth, currentHealth):
+	$AnimationPlayer.play("Flash")

@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Brunhilda/brunhilda_base.png" type="Texture" id=1]
 [ext_resource path="res://Brunhilda/Player.gd" type="Script" id=2]
 [ext_resource path="res://Brunhilda/ghost_2.png" type="Texture" id=3]
+[ext_resource path="res://Skills/Boomerang/BoomerangSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Health.gd" type="Script" id=5]
+[ext_resource path="res://Skills/Bonestorm/Bonestorm.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Brunhilda/brunhilda_all_muscle.png" type="Texture" id=11]
 [ext_resource path="res://Brunhilda/brunhilda_bones.png" type="Texture" id=12]
 [ext_resource path="res://Brunhilda/BrunhildaPortraitGhost.png" type="Texture" id=13]
@@ -117,6 +119,10 @@ volume_db = -10.0
 [node name="RebornGhostAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 22 )
 volume_db = -10.0
+
+[node name="BoomerangSpawner" parent="." instance=ExtResource( 4 )]
+
+[node name="Bonestorm" parent="." instance=ExtResource( 6 )]
 
 [connection signal="death" from="HitboxArea" to="." method="_on_HitboxArea_death"]
 [connection signal="take_damage" from="HitboxArea" to="." method="_on_HitboxArea_take_damage"]

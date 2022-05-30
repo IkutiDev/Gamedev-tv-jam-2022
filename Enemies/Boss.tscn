@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Enemies/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/saint_man.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/RetributionAura.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Shooter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/BossProjectile.tscn" type="PackedScene" id=5]
 
 [node name="Boss" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
@@ -13,7 +14,7 @@ enemySpeed = 100.0
 cowardMovement = true
 cowardMovementMaxDistance = 100
 enemyDamage = 1.2
-maxHealth = 2000.0
+maxHealth = 10000.0
 isBoss = true
 
 [node name="Sprite" parent="." index="0"]
@@ -38,6 +39,24 @@ one_shot = true
 one_shot = true
 
 [node name="Shooter" parent="." index="14" instance=ExtResource( 4 )]
+position = Vector2( 36, 42.5 )
+projectilScene = ExtResource( 5 )
+weaponCooldown = 4.0
+
+[node name="Shooter2" parent="." index="15" instance=ExtResource( 4 )]
+position = Vector2( -22.5, -35 )
+projectilScene = ExtResource( 5 )
+weaponCooldown = 4.0
+
+[node name="Shooter3" parent="." index="16" instance=ExtResource( 4 )]
+position = Vector2( 30, -34 )
+projectilScene = ExtResource( 5 )
+weaponCooldown = 4.0
+
+[node name="Shooter4" parent="." index="17" instance=ExtResource( 4 )]
+position = Vector2( -24.5, 44.5 )
+projectilScene = ExtResource( 5 )
+weaponCooldown = 4.0
 
 [connection signal="timeout" from="AuraStartTimer" to="." method="_on_AuraStartTimer_timeout"]
 [connection signal="timeout" from="AuraEndTimer" to="." method="_on_AuraEndTimer_timeout"]

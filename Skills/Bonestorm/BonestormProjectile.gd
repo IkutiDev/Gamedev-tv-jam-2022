@@ -11,6 +11,7 @@ export var distanceToEnemy = 4
 
 var entityHealth : Health
 
+
 var currentEnemy : BaseEnemy
 var currentProjectileBounces = 0
 
@@ -44,15 +45,22 @@ func _on_Area2D_area_entered(area):
 func Init(enemy):
 	currentEnemy = enemy as BaseEnemy
 
+
 func SearchForEnemy():
 	randomize()
 	if GameManager.enemySpawner.visibleEnemies.size() == 0:
 		return
 	var index = randi() % GameManager.enemySpawner.visibleEnemies.size()
+	var startIndex = index
 	var enemy = GameManager.enemySpawner.visibleEnemies[index]
 	while enemy == currentEnemy:
-		index = randi() % GameManager.enemySpawner.visibleEnemies.size()
+		index += 1
+		if index >=  GameManager.enemySpawner.visibleEnemies.size():
+			index = 0
 		enemy = GameManager.enemySpawner.visibleEnemies[index]
+		if index == startIndex:
+			return
+		
 	currentEnemy = enemy
 
 func _on_Timer_timeout():

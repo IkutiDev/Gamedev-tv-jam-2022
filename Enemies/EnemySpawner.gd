@@ -29,7 +29,6 @@ func SpawnEnemy(enemyScene):
 				index = 0
 			spawnPoint = children[index] as SpawnPosition
 	spawnPoint.Spawn()
-	print(spawnPoint)
 	var enemyInstance = enemyScene.instance()
 	enemyInstance.global_position = spawnPoint.global_position
 	get_node(enemiesContainerNodePath).add_child(enemyInstance)
@@ -43,6 +42,11 @@ func SpawnBoss():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+	
+	
+func _process(delta):
+	print(visibleEnemies.size())
 	pass
 	
 func _on_Spawner_Timer_Callback(enemyScene):
