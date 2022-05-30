@@ -24,12 +24,13 @@ scale = Vector2( 8, 8 )
 script = ExtResource( 5 )
 shrinkSpeed = 1.5
 shrinkRate = 1.0
-damageSpeed = 0.3
+damageSpeed = 0.8
 damage = 10
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2.375, -2.375 )
 frames = SubResource( 3 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite"]
