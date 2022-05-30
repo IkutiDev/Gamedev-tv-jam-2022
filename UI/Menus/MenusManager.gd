@@ -4,6 +4,8 @@ extends Control
 # var a = 2
 # var b = "text"
 
+class_name MenuManager
+
 signal StartGame()
 signal ShowGUI()
 signal HideGUI()

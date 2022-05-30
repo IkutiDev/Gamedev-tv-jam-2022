@@ -3,6 +3,8 @@ extends Node2D
 class_name EnemySpawner
 
 export var enemiesContainerNodePath : NodePath
+export var bossScene : PackedScene
+export var bossSpawnPoint : NodePath
 
 var visibleEnemies : Array
 # Declare member variables here. Examples:
@@ -33,6 +35,11 @@ func SpawnEnemy(enemyScene):
 	get_node(enemiesContainerNodePath).add_child(enemyInstance)
 	enemyInstance.Init(self)
 	
+func SpawnBoss():
+	var bossInstance = bossScene.instance()
+	bossInstance.global_position = get_node(bossSpawnPoint).global_position
+	get_node(enemiesContainerNodePath).add_child(bossInstance)
+	bossInstance.Init(self)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,7 +60,10 @@ func EnterPhase(phase):
 			timer.connect("timeout", self, "_on_Spawner_Timer_Callback", [_enemyConfig.enemyScene])
 			$Timers.add_child(timer)
 			timer.start()
-
+			
+	var _phase = phase as Phase
+	if _phase.spawnBoss :
+		SpawnBoss()
 
 func ClearOutTimers():
 	for timer in $Timers.get_children():

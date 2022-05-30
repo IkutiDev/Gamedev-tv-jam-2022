@@ -17,6 +17,9 @@ export var enemyDamage = 0.2
 export var enemyDamageSpeed = 0.2
 export var maxHealth = 100.0
 
+export var isBoss = false
+export var AuraCooldown = 5.0
+
 var velocity = Vector2.ZERO
 
 var knockback_state = false
@@ -34,6 +37,9 @@ func Init(enemySpawner):
 	playerPosition = playerNode.global_position
 	$HitboxArea.Init(maxHealth)
 	$DamageDealer.Init(self)
+	
+	if isBoss:
+		EnableAura()
 
 func _process(delta):
 	
@@ -43,10 +49,17 @@ func _process(delta):
 	direction_vector = global_position.direction_to(playerPosition).normalized()
 	
 	
-	if direction_vector.x > 0:
-		scale.x = scale.y * 1
-	if direction_vector.x < 0:
-		scale.x = scale.y * -1
+	if isBoss:
+		if direction_vector.x > 0:
+			scale.x = scale.y * -1
+		if direction_vector.x < 0:
+			scale.x = scale.y * 1		
+	else:
+		if direction_vector.x > 0:
+			scale.x = scale.y * 1
+		if direction_vector.x < 0:
+			scale.x = scale.y * -1
+
 	
 	if(cowardMovement):
 		if(global_position.distance_to(playerPosition))<= cowardMovementMaxDistance:
@@ -61,14 +74,19 @@ func _process(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
 	velocity = move_and_slide(velocity)
+	
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	_enemySpawner.visibleEnemies.erase(self)
+	if isBoss:
+		return
 	if $VisibilityNotifier2D/Timer.is_inside_tree():
 		$VisibilityNotifier2D/Timer.start()
 
-func DestroyThisEnemy(killedByPlayer):
+func DestroyThisEnemy(killedByPlayer, killedByCards = false):
 	if killedByPlayer:
+		if killedByCards and isBoss:
+			return
 		var GUI = get_tree().get_nodes_in_group("GUI")[0] as GUI
 		GUI.UpdateKillCounter()
 		randomize()
@@ -78,11 +96,16 @@ func DestroyThisEnemy(killedByPlayer):
 			revengeOrbInstance.add_to_group("Temp")
 			get_tree().get_root().call_deferred("add_child", revengeOrbInstance)
 	_enemySpawner.visibleEnemies.erase(self)
+	if isBoss:
+		var MenuManager = get_tree().get_nodes_in_group("MenuManager")[0] as MenuManager
+		MenuManager.ShowWinScreen()
 	queue_free()
 
 
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
 	_enemySpawner.visibleEnemies.append(self)
+	if isBoss:
+		return
 	if !$VisibilityNotifier2D/Timer.is_stopped():
 		$VisibilityNotifier2D/Timer.stop()
 	
@@ -120,3 +143,19 @@ func _on_PoisonTimer_timeout():
 
 func _on_PoisonTimerDamageTicks_timeout():
 	$HitboxArea.TakeDamage(_poisonDamage)
+	
+func EnableAura():
+	$RetributionAura.set_process(false)
+	$RetributionAura.hide()
+	$AuraStartTimer.start(AuraCooldown)
+
+
+func _on_AuraStartTimer_timeout():
+	$RetributionAura.set_process(true)
+	$RetributionAura.show()
+	$AuraEndTimer.start(AuraCooldown)
+
+func _on_AuraEndTimer_timeout():
+	$RetributionAura.set_process(false)
+	$RetributionAura.hide()
+	$AuraStartTimer.start(AuraCooldown)

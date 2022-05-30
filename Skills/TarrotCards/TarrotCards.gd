@@ -53,7 +53,7 @@ func DamageEffect():
 			return
 		GameManager.enemySpawner.visibleEnemies.push_front(i)
 		var enemy = i as BaseEnemy
-		enemy.DestroyThisEnemy(true)
+		enemy.DestroyThisEnemy(true, true)
 
 func PoisonEffect():
 	$CanvasLayer/TextureRect.texture = poisonEffectSprite

@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Health.gd"
 }, {
+"base": "Control",
+"class": "MenuManager",
+"language": "GDScript",
+"path": "res://UI/Menus/MenusManager.gd"
+}, {
 "base": "Resource",
 "class": "Phase",
 "language": "GDScript",
@@ -110,6 +115,7 @@ _global_script_class_icons={
 "EnemySpawner": "",
 "GUI": "",
 "Health": "",
+"MenuManager": "",
 "Phase": "",
 "PhaseManager": "",
 "Player": "",

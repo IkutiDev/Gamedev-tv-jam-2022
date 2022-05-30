@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Brunhilda/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/RoadTileset.tres" type="TileSet" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://World/Grass/grass_2.png" type="Texture" id=26]
 [ext_resource path="res://World/Grass/grass_3.png" type="Texture" id=27]
 [ext_resource path="res://SpawnPoint.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Enemies/Boss.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Skills/BloodTrail/BloodTrail.tscn" type="PackedScene" id=32]
 [ext_resource path="res://Skills/Garlic/Garlic.tres" type="Resource" id=33]
 [ext_resource path="res://Spell Effects/BloodEffects/1/1_0.png" type="Texture" id=34]
@@ -269,9 +270,14 @@ tile_data = PoolIntArray( -720896, 2, 0, -720895, 11, 0, -720894, 0, 0, -720893,
 position = Vector2( 340, 160 )
 script = ExtResource( 5 )
 enemiesContainerNodePath = NodePath("../EnemiesContainer")
+bossScene = ExtResource( 29 )
+bossSpawnPoint = NodePath("BossSpawnPoint")
 
 [node name="Timers" type="Node2D" parent="YSort/EnemySpawner"]
 position = Vector2( -340, -160 )
+
+[node name="BossSpawnPoint" parent="YSort/EnemySpawner" instance=ExtResource( 28 )]
+position = Vector2( 530, 34 )
 
 [node name="SpawnPoints" type="Node2D" parent="YSort/EnemySpawner"]
 position = Vector2( 277, 50 )

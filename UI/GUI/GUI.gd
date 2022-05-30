@@ -17,6 +17,7 @@ func _ready():
 func UpdateKillCounter():
 	killCounter+=1
 	$KillCountLabel.text = killCounter as String
+	
 
 func UpdateHealthBar(maxHealth, currentHealth):
 	$HPBarFilling.value = (currentHealth / maxHealth * 100) as int

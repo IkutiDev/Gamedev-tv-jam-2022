@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Medieval Scroll of Wisdom.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Menus/WinScreen.gd" type="Script" id=2]
@@ -9,6 +9,11 @@ extra_spacing_top = 29
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 29
+extra_spacing_top = 29
 font_data = ExtResource( 1 )
 
 [node name="WinScreen" type="Control"]
@@ -37,12 +42,19 @@ valign = 1
 [node name="Description" type="Label" parent="Panel/VBoxContainer"]
 margin_top = 81.0
 margin_right = 640.0
-margin_bottom = 318.0
+margin_bottom = 298.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam odio arcu, elementum nec nisi in, laoreet varius erat. Aliquam sit amet faucibus lorem, vitae consectetur ante. Nam sodales dapibus arcu non interdum. Praesent efficitur dui vitae quam blandit porttitor. Sed et malesuada dolor. Duis posuere elit vitae porta rhoncus. Phasellus viverra ante non nisi tempor, sed consectetur tellus dapibus. Nullam in egestas tellus. Duis maximus dapibus aliquam. Maecenas nec aliquam ante.
-
-Ut nec diam vel massa cursus imperdiet. Donec commodo aliquam porta. In hac habitasse platea dictumst. Nulla et quam nec ipsum malesuada auctor. "
+text = "Yes! Although you are an ethereal being, you can feel that warm blood slowly reaching your feet as Theodor, treacherous uncle, lies on the floor with his guts ripped out. You can see his eyes - once so proud, now lifeless and empty just like yours. But strangely you don't feel any satisfaction. The revenge has been fulfilled and yet - you are not content. The throne will never be yours, the life once stolen will never come back. Dream of retribution kept you awake, and now? Now you just turn around and walk back to the crypt. Its darkness makes you sleepy, the coldness makes you shiver. Eventually you fall asleep and never wake up again."
 align = 1
 valign = 1
 autowrap = true
+
+[node name="Title2" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 302.0
+margin_right = 640.0
+margin_bottom = 361.0
+custom_fonts/font = SubResource( 3 )
+text = "Thanks for playing!"
+align = 1
+valign = 1
