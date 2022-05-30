@@ -18,6 +18,7 @@ Programmer - Ikuti
 Designer - Frost
 
 Artist - CGWD4
+
 Free art assets used for this:
 
 https://xyezawr.itch.io/gif-free-pixel-effects-pack-15-magick-arrows
