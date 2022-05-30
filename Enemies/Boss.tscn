@@ -1,62 +1,194 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Enemies/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/EnemyDamageArea.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/saint_man.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/RetributionAura.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Shooter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/BossProjectile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Health.gd" type="Script" id=6]
+[ext_resource path="res://Pickups/RevengePickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/BaseEnemy.gd" type="Script" id=8]
 
-[node name="Boss" instance=ExtResource( 1 )]
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 14.0
+height = 32.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 0.5, 0.5, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Poison"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.145098, 0.478431, 0.145098, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 0.5, 0.5, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Poison"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.145098, 0.478431, 0.145098, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 11.0
+height = 32.0
+
+[node name="Boss" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
 collision_layer = 4
 collision_mask = 4
+script = ExtResource( 8 )
+revengeOrb = ExtResource( 7 )
 enemySpeed = 100.0
 cowardMovement = true
 cowardMovementMaxDistance = 100
 enemyDamage = 1.2
-maxHealth = 10000.0
+enemyDamageSpeed = 0.5
+maxHealth = 5000.0
 isBoss = true
 
-[node name="Sprite" parent="." index="0"]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 5, 27 )
+rotation = -1.5708
+shape = SubResource( 1 )
 
-[node name="CollisionShape2D2" parent="HitboxArea" index="0"]
+[node name="DamageDealer" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( -4.76837e-07, -1.43051e-06 )
+scale = Vector2( 1.2, 3 )
+
+[node name="Timer" type="Timer" parent="VisibilityNotifier2D"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HitboxArea" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxArea"]
 position = Vector2( 5, 0 )
+shape = SubResource( 4 )
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 2 )
+anims/Poison = SubResource( 5 )
+
+[node name="PoisonAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 6 )
+anims/Poison = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 2, 1 )
+shape = SubResource( 3 )
 
-[node name="RetributionAura" parent="." index="11" instance=ExtResource( 3 )]
+[node name="SlowTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PoisonTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PoisonTimerDamageTicks" type="Timer" parent="."]
+
+[node name="RetributionAura" parent="." instance=ExtResource( 3 )]
 position = Vector2( 4.5, 26.5 )
 
-[node name="AuraStartTimer" type="Timer" parent="." index="12"]
+[node name="AuraStartTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AuraEndTimer" type="Timer" parent="." index="13"]
+[node name="AuraEndTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Shooter" parent="." index="14" instance=ExtResource( 4 )]
+[node name="Shooter" parent="." instance=ExtResource( 4 )]
 position = Vector2( 36, 42.5 )
 projectilScene = ExtResource( 5 )
 weaponCooldown = 4.0
 
-[node name="Shooter2" parent="." index="15" instance=ExtResource( 4 )]
+[node name="Shooter2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -22.5, -35 )
 projectilScene = ExtResource( 5 )
 weaponCooldown = 4.0
 
-[node name="Shooter3" parent="." index="16" instance=ExtResource( 4 )]
+[node name="Shooter3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 30, -34 )
 projectilScene = ExtResource( 5 )
 weaponCooldown = 4.0
 
-[node name="Shooter4" parent="." index="17" instance=ExtResource( 4 )]
+[node name="Shooter4" parent="." instance=ExtResource( 4 )]
 position = Vector2( -24.5, 44.5 )
 projectilScene = ExtResource( 5 )
 weaponCooldown = 4.0
 
+[connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
+[connection signal="timeout" from="VisibilityNotifier2D/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="death" from="HitboxArea" to="." method="_on_HitboxArea_death"]
+[connection signal="take_damage" from="HitboxArea" to="." method="_on_HitboxArea_take_damage"]
+[connection signal="area_entered" from="Area2D" to="DamageDealer" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="DamageDealer" method="_on_Area2D_area_exited"]
+[connection signal="timeout" from="SlowTimer" to="." method="_on_SlowTimer_timeout"]
+[connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]
+[connection signal="timeout" from="PoisonTimerDamageTicks" to="." method="_on_PoisonTimerDamageTicks_timeout"]
 [connection signal="timeout" from="AuraStartTimer" to="." method="_on_AuraStartTimer_timeout"]
 [connection signal="timeout" from="AuraEndTimer" to="." method="_on_AuraEndTimer_timeout"]

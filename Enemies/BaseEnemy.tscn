@@ -11,8 +11,8 @@ radius = 5.0
 height = 32.0
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 16.0
-height = 24.0
+radius = 14.0
+height = 32.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Flash"
@@ -81,7 +81,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 27.0
+radius = 11.0
 height = 32.0
 
 [node name="Townsfolk" type="KinematicBody2D"]
@@ -132,7 +132,6 @@ anims/Poison = SubResource( 7 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 shape = SubResource( 3 )
 
 [node name="SlowTimer" type="Timer" parent="."]
